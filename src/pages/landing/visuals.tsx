@@ -1,4 +1,5 @@
 import React from 'react';
+import logoFresh from '../../assets/logo_fresh.jpg';
 
 /**
  * Inline SVG visuals for the landing page.
@@ -46,10 +47,6 @@ export const BeforeAfter: React.FC = () => {
           <NexbitPanelSvg />
         </figure>
       </div>
-
-      <p className="nx-ba__legend">
-        From a thirty-tab spreadsheet to a single ledger that reconciles itself.
-      </p>
     </div>
   );
 };
@@ -408,7 +405,7 @@ export const DashboardPreview: React.FC = () => (
       <span className="nx-dash__dot" />
       <span className="nx-dash__dot" />
       <span className="nx-dash__dot" />
-      <span className="nx-dash__url nx-mono">app.nexbit.ai · /workspace/aprilclose</span>
+      <span className="nx-dash__url nx-mono">app.usenexbit.com · /workspace/aprilclose</span>
     </div>
     <svg
       className="nx-dash__svg"
@@ -434,9 +431,7 @@ export const DashboardPreview: React.FC = () => (
       {/* Sidebar */}
       <rect x="0" y="0" width="200" height="580" fill="#f4eedf" />
       <g fontFamily="Inter Tight, sans-serif">
-        <text x="24" y="40" fontFamily="Fraunces, serif" fontSize="22" fill="#14201e">
-          Nexbit
-        </text>
+        <image href={logoFresh} x="24" y="20" width="100" height="28" preserveAspectRatio="xMinYMid meet" />
         <circle cx="80" cy="34" r="3" fill="#b5694f" />
 
         <text x="24" y="80" fontSize="10" fill="#9aa39e" letterSpacing="1.4">WORKSPACE</text>

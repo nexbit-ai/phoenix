@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import heroIllustration from '../../assets/hero-illustration.png';
+import logoFresh from '../../assets/logo_fresh.jpg';
 import {
   BeforeAfter,
   DashboardPreview,
@@ -26,7 +27,7 @@ const CAPABILITIES: Capability[] = [
   {
     swatch: 'var(--sage)',
     title: 'Unified financial data',
-    body: 'Marketplaces, payment gateways, logistics partners, documents, and accounting systems — ingested into a single ledger of truth.',
+    body: 'Marketplaces, payment gateways, logistics partners, documents, and accounting systems ingested into a single ledger of truth.',
   },
   {
     swatch: 'var(--mist)',
@@ -41,7 +42,7 @@ const CAPABILITIES: Capability[] = [
   {
     swatch: 'var(--sand)',
     title: 'Reporting & close readiness',
-    body: 'Income, expense, custom prompts, and scheduled reports — generated from the same canonical numbers your books trust.',
+    body: 'Income, expense, custom prompts, and scheduled reports generated from the same canonical numbers your books trust.',
   },
   {
     swatch: 'var(--stone)',
@@ -103,7 +104,7 @@ const OUTCOMES: Outcome[] = [
         Fewer <em>blind spots.</em>
       </>
     ),
-    body: 'Settlement, ageing, and variance — visible the moment they appear.',
+    body: 'Settlement, ageing, and variance, visible the moment they appear.',
   },
   {
     title: (
@@ -111,7 +112,7 @@ const OUTCOMES: Outcome[] = [
         Less manual <em>work.</em>
       </>
     ),
-    body: 'Spreadsheets stay where they belong — out of the close.',
+    body: 'Spreadsheets stay where they belong, out of the close.',
   },
 ];
 
@@ -122,8 +123,8 @@ const FAQS: Faq[] = [
     a: (
       <p>
         Finance teams, controllers, and accounting operators inside D2C and commerce
-        brands. The brands we build for are usually past their first scale moment —
-        multiple channels, multiple payment rails, an actual close calendar — and
+        brands. The brands we build for are usually past their first scale moment
+        (multiple channels, multiple payment rails, an actual close calendar), and
         spreadsheets have stopped being honest.
       </p>
     ),
@@ -143,8 +144,8 @@ const FAQS: Faq[] = [
     a: (
       <>
         <p>
-          AI sits inside specific workflows — reconciliation matching, variance
-          explanation, anomaly detection, and assistant-style guidance — not as a
+          AI sits inside specific workflows like reconciliation matching, variance
+          explanation, anomaly detection, and assistant-style guidance, not as a
           floating chatbot bolted on top.
         </p>
         <p>
@@ -180,9 +181,25 @@ const FAQS: Faq[] = [
       <p>
         Each workspace is isolated. Authentication uses B2B SSO with session
         controls and short-lived tokens. We treat your financial data the way your
-        finance team does — read-only by default, audited by design.
+        finance team does: read-only by default, audited by design.
       </p>
     ),
+  },
+];
+
+type Testimonial = { quote: string; attribution: string };
+const TESTIMONIALS: Testimonial[] = [
+  {
+    quote: 'It’s the first time finance and ops have been looking at the same numbers.',
+    attribution: 'Head of Finance · A leading D2C Wellness brand',
+  },
+  {
+    quote: 'Nexbit has turned our month-end close from a three-week archaeology project into a three-day sprint.',
+    attribution: 'Controller · Global Health brand',
+  },
+  {
+    quote: 'The visibility into settlement exceptions alone paid for the system in the first month.',
+    attribution: 'VP Finance · High-growth apparel brand',
   },
 ];
 
@@ -233,8 +250,8 @@ function useStickyTopbar(ref: React.RefObject<HTMLElement | null>) {
 
 const Wordmark: React.FC<{ size?: 'sm' | 'md' }> = ({ size = 'md' }) => (
   <span className="nx-wordmark" style={size === 'sm' ? { fontSize: 18 } : undefined}>
+    <img src={logoFresh} alt="" className="nx-wordmark__logo" aria-hidden />
     Nexbit
-    <span className="nx-wordmark__dot" aria-hidden />
   </span>
 );
 
@@ -288,7 +305,6 @@ const Landing: React.FC = () => {
             <a className="nx-nav__link" href="#faq">FAQ</a>
           </nav>
           <div className="nx-topbar__cta">
-            <a className="nx-btn nx-btn--ghost" href="/login">Sign in</a>
             <a className="nx-btn nx-btn--solid" href="#cta">
               Request access <span className="nx-btn__arrow" aria-hidden>→</span>
             </a>
@@ -303,17 +319,12 @@ const Landing: React.FC = () => {
             <div className="nx-hero-frame nx-reveal">
               <div className="nx-hero-frame__top">
                 <div className="nx-hero-frame__copy">
-                  <div className="nx-meta nx-hero__eyebrow">
-                    Accounting AI · Built for D2C
-                  </div>
                   <h1 className="nx-hero__headline">
-                    Finance that finally moves at the speed of your{' '}
-                    <span className="nx-italic">commerce.</span>
+                    Finance that moves at the speed of your <span className="nx-italic">commerce</span>
                   </h1>
                   <p className="nx-hero__lede">
                     One intelligent layer for revenue, settlements, payouts, books,
-                    and reporting — built for D2C brands scaling across marketplaces,
-                    payment rails, and accounting systems.
+                    and reporting
                   </p>
                 </div>
                 <div className="nx-hero-frame__cta">
@@ -336,7 +347,7 @@ const Landing: React.FC = () => {
               <div className="nx-hero-frame__divider nx-hero-frame__divider--credibility" aria-hidden />
 
               <div className="nx-hero-frame__credibility">
-                <span className="nx-meta">Ingesting from</span>
+                <span className="nx-meta">Bring it on</span>
                 <div className="nx-hero-frame__credibility-list">
                   <span>Marketplaces</span>
                   <span>Payment gateways</span>
@@ -349,63 +360,15 @@ const Landing: React.FC = () => {
           </div>
         </section>
 
-        {/* PROBLEM */}
-        <section className="nx-section">
-          <div className="nx-shell">
-            <div className="nx-meta nx-section__eyebrow nx-reveal">The problem</div>
-            <h2 className="nx-display nx-section__headline nx-reveal">
-              Finance, <span className="nx-italic">fragmented.</span>
-            </h2>
-            <p className="nx-lede nx-section__lede nx-reveal nx-prose">
-              D2C finance lives across a dozen places. Marketplace settlements arrive
-              late. Payouts don’t tie out. Books drift. Month-end becomes
-              archaeology.
-            </p>
-
-            <div className="nx-problem-grid nx-reveal">
-              <div className="nx-problem-grid__item">
-                <h3 className="nx-problem-grid__title">Settlement opacity</h3>
-                <p className="nx-problem-grid__body">
-                  Payments land days late, in formats no two providers agree on, with
-                  fees no spreadsheet can track honestly.
-                </p>
-              </div>
-              <div className="nx-problem-grid__item">
-                <h3 className="nx-problem-grid__title">Disconnected systems</h3>
-                <p className="nx-problem-grid__body">
-                  Marketplaces, gateways, logistics, ERP, and books each tell their
-                  own version of the same number.
-                </p>
-              </div>
-              <div className="nx-problem-grid__item">
-                <h3 className="nx-problem-grid__title">Manual reconciliation</h3>
-                <p className="nx-problem-grid__body">
-                  Spreadsheets become the source of truth. They shouldn’t be —
-                  but until now there hasn’t been a real alternative.
-                </p>
-              </div>
-              <div className="nx-problem-grid__item">
-                <h3 className="nx-problem-grid__title">Slow close</h3>
-                <p className="nx-problem-grid__body">
-                  Month-end takes weeks. By the time the numbers land, the month is
-                  already gone — and so is the chance to act on them.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* BEFORE / AFTER — Excel chaos to Nexbit clarity */}
         <section className="nx-section nx-section--tight nx-band nx-band--paper-deep">
           <div className="nx-shell">
-            <div className="nx-meta nx-section__eyebrow nx-reveal">The transition</div>
             <h2 className="nx-display nx-section__headline nx-reveal">
               From the spreadsheet, <br />
-              to a <span className="nx-italic">system.</span>
+              to a <span className="nx-italic">connected system.</span>
             </h2>
             <p className="nx-lede nx-section__lede nx-reveal nx-prose">
-              Today, finance teams run the close in a thirty-tab workbook. Tomorrow,
-              the same data lives in a single ledger that reconciles itself.
+              Finance teams run the close in a thirty-tab workbook. Make their life easy with a single ledger that reconciles itself.
             </p>
 
             <div className="nx-reveal" style={{ marginTop: 'var(--s8)' }}>
@@ -415,28 +378,13 @@ const Landing: React.FC = () => {
         </section>
 
         {/* SOLUTION + manifesto band */}
-        <section className="nx-section nx-section--tight">
-          <div className="nx-shell">
-            <div className="nx-meta nx-section__eyebrow nx-reveal">The operating layer</div>
-            <h2 className="nx-display nx-section__headline nx-reveal">
-              One intelligent layer <br /> for finance.
-            </h2>
-            <p className="nx-lede nx-section__lede nx-reveal nx-prose">
-              We unify the financial events behind your business — every order,
-              settlement, payout, fee, return, and entry — and turn them into a
-              single source of truth your team can actually operate on.
-            </p>
-          </div>
-
-          <div className="nx-band nx-band--sage" style={{ marginTop: 'var(--s9)' }}>
+        <section>
+          <div className="nx-band nx-band--sage">
             <div className="nx-shell nx-manifesto nx-reveal">
               <p className="nx-manifesto__line">
                 &ldquo;Accounting AI is not automation. It&rsquo;s the system{' '}
                 <span className="nx-italic">underneath</span> the operation.&rdquo;
               </p>
-              <div className="nx-manifesto__attribution nx-meta">
-                Our position
-              </div>
             </div>
           </div>
         </section>
@@ -472,8 +420,8 @@ const Landing: React.FC = () => {
               </div>
               <DashboardPreview />
               <p className="nx-dash-wrap__legend">
-                One view across revenue, settlements, payouts, and the close —
-                generated from the same canonical numbers your books trust.
+                One view across revenue, settlements, payouts, and the close.
+                Generated from the same numbers your books trust.
               </p>
             </div>
           </div>
@@ -516,20 +464,10 @@ const Landing: React.FC = () => {
             <div className="nx-context">
               <div className="nx-context__body nx-reveal">
                 <p>
-                  A scaling D2C brand isn’t a single business — it’s a
-                  dozen overlapping ones. Every marketplace, gateway, and logistics
-                  partner has its own settlement clock, its own fee structure, its
-                  own version of the truth.
+                  Scaling D2C brands are a complex web of marketplaces and partners, each with its own settlement logic. Legacy tools weren't built for this fragmentation.
                 </p>
                 <p>
-                  Legacy accounting tools were designed for a world where revenue
-                  came through one rail. The modern D2C P&amp;L doesn’t look
-                  like that anymore. Finance needs a system that does.
-                </p>
-                <p>
-                  Accounting AI is that system — the layer underneath the
-                  operation, where commerce data, settlement intelligence, and the
-                  general ledger finally agree.
+                  Accounting AI is the foundational layer where your commerce data, settlement intelligence, and general ledger finally align.
                 </p>
               </div>
 
@@ -556,8 +494,7 @@ const Landing: React.FC = () => {
                     <em>3 weeks</em>
                   </div>
                   <p className="nx-context__stat-body">
-                    a typical month-end close — in a quarter where four weeks have
-                    already passed.
+                    a typical month-end close.
                   </p>
                 </div>
               </div>
@@ -592,29 +529,24 @@ const Landing: React.FC = () => {
           </div>
         </section>
 
-        {/* TRUST */}
         <section className="nx-section nx-band nx-band--mint">
           <div className="nx-shell nx-trust">
-            <div className="nx-meta nx-reveal">Early design partners</div>
             <h2 className="nx-display nx-section__headline nx-reveal" style={{ marginTop: 'var(--s4)', marginLeft: 'auto', marginRight: 'auto' }}>
               Built with operators.
             </h2>
 
-            <div className="nx-trust__row nx-reveal">
-              <span className="nx-trust__name">Sundry</span>
-              <span className="nx-trust__name">Folk Goods</span>
-              <span className="nx-trust__name">Maison Atlas</span>
-              <span className="nx-trust__name">Pareto</span>
-              <span className="nx-trust__name">Ten North</span>
+            <div className="nx-trust__grid">
+              {TESTIMONIALS.map((t, i) => (
+                <div key={i} className="nx-trust__item nx-reveal">
+                  <p className="nx-trust__quote">
+                    &ldquo;{t.quote}&rdquo;
+                  </p>
+                  <p className="nx-trust__attribution nx-meta">
+                    {t.attribution}
+                  </p>
+                </div>
+              ))}
             </div>
-
-            <p className="nx-trust__quote nx-reveal">
-              &ldquo;It&rsquo;s the first time finance and ops have been looking at
-              the same numbers.&rdquo;
-            </p>
-            <p className="nx-trust__attribution nx-reveal nx-meta">
-              Head of Finance · Scaling D2C brand
-            </p>
           </div>
         </section>
 
@@ -640,14 +572,10 @@ const Landing: React.FC = () => {
             <p className="nx-final__line nx-reveal">
               Run finance like the <em>rest</em> of your company.
             </p>
-            <p className="nx-final__sub nx-reveal">
-              For D2C brands ready to make accounting a system, not a scramble.
-            </p>
             <div className="nx-final__cta nx-reveal">
               <a className="nx-btn nx-btn--solid nx-btn--lg" href="mailto:hello@nexbit.ai?subject=Early%20access">
                 Request access <span className="nx-btn__arrow" aria-hidden>→</span>
               </a>
-              <span className="nx-final__tag nx-mono">EARLY ACCESS · 2026</span>
             </div>
           </div>
         </section>
@@ -658,7 +586,8 @@ const Landing: React.FC = () => {
             <div className="nx-footer__row">
               <div>
                 <div className="nx-footer__brand">
-                  Nexbit<span className="nx-wordmark__dot" aria-hidden style={{ transform: 'translateY(-2px)' }} />
+                  <img src={logoFresh} alt="" className="nx-wordmark__logo" aria-hidden />
+                  Nexbit
                 </div>
                 <p className="nx-footer__line">
                   Accounting AI for D2C. The operating layer for revenue,
@@ -677,12 +606,55 @@ const Landing: React.FC = () => {
             </div>
 
             <div className="nx-footer__bottom">
-              <span className="nx-meta">© Nexbit · All rights reserved</span>
-              <span className="nx-meta">Made for finance teams</span>
+              <span className="nx-meta">© Logikeon Labs Private Limited · All rights reserved</span>
+              <span className="nx-meta">Built for and by finance teams</span>
             </div>
           </div>
         </footer>
       </main>
+
+      {/* PROBLEM — moved past the footer per design direction */}
+      <section className="nx-section">
+        <div className="nx-shell">
+          {/* <div className="nx-meta nx-section__eyebrow nx-reveal">The problem</div> */}
+          <h2 className="nx-display nx-section__headline nx-reveal">
+            Finance is <span className="nx-italic">fragmented.</span>
+          </h2>
+          <p className="nx-lede nx-section__lede nx-reveal nx-prose">
+            Marketplace settlements arrive late.
+            Payouts don’t tie out. Books drift. Month-end becomes archaeology.
+          </p>
+
+          <div className="nx-problem-grid nx-reveal">
+            <div className="nx-problem-grid__item">
+              <h3 className="nx-problem-grid__title">Settlement opacity</h3>
+              <p className="nx-problem-grid__body">
+                Payments land days late, in formats no two providers agree on, with
+                fees no spreadsheet can track honestly.
+              </p>
+            </div>
+            <div className="nx-problem-grid__item">
+              <h3 className="nx-problem-grid__title">Disconnected systems</h3>
+              <p className="nx-problem-grid__body">
+                Marketplaces, gateways, logistics, ERP, and books each tell their
+                own version of the same number.
+              </p>
+            </div>
+            <div className="nx-problem-grid__item">
+              <h3 className="nx-problem-grid__title">Manual reconciliation</h3>
+              <p className="nx-problem-grid__body">
+                Spreadsheets become the source of truth. They shouldn’t be.
+              </p>
+            </div>
+            <div className="nx-problem-grid__item">
+              <h3 className="nx-problem-grid__title">Slow close</h3>
+              <p className="nx-problem-grid__body">
+                Month-end takes weeks. By the time the numbers land, the month is already gone.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };
