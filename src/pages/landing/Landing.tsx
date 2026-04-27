@@ -428,11 +428,11 @@ const Landing: React.FC = () => {
         <section className="nx-section nx-section--tight nx-band nx-band--paper-deep">
           <div className="nx-shell">
             <h2 className="nx-display nx-section__headline nx-reveal">
-              From the spreadsheet, <br />
-              to a <span className="nx-italic">connected system.</span>
+              Ditch the spreadsheets, <br />
+              embrace <span className="nx-italic">clarity.</span>
             </h2>
             <p className="nx-lede nx-section__lede nx-reveal nx-prose">
-              Finance teams run the close in a thirty-tab workbook. Make their life easy with a single ledger that reconciles itself.
+              Finance teams run the close in thirty-tab workbooks. Bring it down to a single ledger that reconciles itself.
             </p>
 
             <div className="nx-reveal" style={{ marginTop: 'var(--s8)' }}>
