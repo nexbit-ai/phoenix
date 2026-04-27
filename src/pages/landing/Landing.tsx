@@ -428,7 +428,7 @@ const Landing: React.FC = () => {
         <section className="nx-section nx-section--tight nx-band nx-band--paper-deep">
           <div className="nx-shell">
             <h2 className="nx-display nx-section__headline nx-reveal">
-              Ditch the spreadsheets, <br />
+              Ditch spreadsheets, <br />
               embrace <span className="nx-italic">clarity.</span>
             </h2>
             <p className="nx-lede nx-section__lede nx-reveal nx-prose">
