@@ -1426,3 +1426,136 @@ html, body {
   border-radius: 4px;
   z-index: 100;
 }
+
+/* ---------- Waitlist input (echelon-web style) ---------- */
+
+.nx-waitlist {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 360px;
+}
+
+.nx-waitlist--align-center {
+  margin-left: auto;
+  margin-right: auto;
+  align-items: center;
+}
+
+.nx-waitlist__form {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+}
+
+.nx-waitlist__field {
+  position: relative;
+  min-width: 0;
+  flex: 1 1 220px;
+}
+
+.nx-waitlist__input {
+  height: 48px;
+  width: 100%;
+  min-width: 0;
+  padding: 0 16px;
+  border-radius: 24px 0 0 24px;
+  border: 1px solid #222222;
+  border-right: none;
+  background: #000000;
+  color: #FFFFFF;
+  font-family: var(--text);
+  font-size: 14px;
+  outline: none;
+  transition: border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.nx-waitlist__input::placeholder {
+  color: #FFFFFF;
+  opacity: 1;
+}
+
+.nx-waitlist__input:focus {
+  border-color: #444444;
+  box-shadow: inset 0 0 0 1px #444444;
+}
+
+.nx-waitlist__input:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.nx-waitlist__error {
+  pointer-events: none;
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 11px;
+  line-height: 1;
+  color: #b46a52;
+  font-family: var(--text);
+}
+
+.nx-landing .nx-waitlist__btn {
+  height: 48px;
+  width: 68px;
+  min-width: 68px;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 8px;
+  border-radius: 0 24px 24px 0;
+  border: 1px solid #222222;
+  border-left: none;
+  background: #000000;
+  color: #FFFFFF;
+  font-family: var(--text);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 180ms ease, color 180ms ease, border-color 180ms ease;
+}
+
+.nx-landing .nx-waitlist__btn:hover {
+  background: #000000;
+  border-color: #444444;
+}
+
+.nx-landing .nx-waitlist__btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.85;
+}
+
+.nx-waitlist__btn-icon {
+  width: 22px;
+  height: 22px;
+}
+
+.nx-waitlist__btn-text {
+  font-size: 13px;
+  letter-spacing: 0.02em;
+}
+
+.nx-waitlist__confirm {
+  margin-top: 12px;
+  font-size: 13px;
+  color: var(--on-dark-soft);
+  font-family: var(--text);
+}
+
+/* When the waitlist sits on a light band (final CTA), tune the helper text. */
+.nx-final .nx-waitlist__confirm {
+  color: var(--ink-soft);
+}
+
+@media (max-width: 520px) {
+  .nx-waitlist {
+    max-width: 320px;
+  }
+  .nx-waitlist__btn {
+    width: 60px;
+    min-width: 60px;
+  }
+}

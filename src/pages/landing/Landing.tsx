@@ -7,6 +7,7 @@ import {
   DataFlow,
   ReconciliationLedger,
 } from './visuals';
+import { isValidEmail, submitNexbitAccountingAiEmail } from '../../utils/sheetdb';
 import './landing.css';
 
 /**
@@ -123,8 +124,8 @@ const FAQS: Faq[] = [
     a: (
       <p>
         Finance teams, controllers, and accounting operators inside D2C and commerce
-        brands. The brands we build for are usually past their first scale moment
-        (multiple channels, multiple payment rails, an actual close calendar), and
+        brands. The brands we build for are usually past their first scale moment —
+        multiple channels, multiple payment rails, an actual close calendar — and
         spreadsheets have stopped being honest.
       </p>
     ),
@@ -144,8 +145,8 @@ const FAQS: Faq[] = [
     a: (
       <>
         <p>
-          AI sits inside specific workflows like reconciliation matching, variance
-          explanation, anomaly detection, and assistant-style guidance, not as a
+          AI sits inside specific workflows — reconciliation matching, variance
+          explanation, anomaly detection, and assistant-style guidance — not as a
           floating chatbot bolted on top.
         </p>
         <p>
@@ -181,7 +182,7 @@ const FAQS: Faq[] = [
       <p>
         Each workspace is isolated. Authentication uses B2B SSO with session
         controls and short-lived tokens. We treat your financial data the way your
-        finance team does: read-only by default, audited by design.
+        finance team does — read-only by default, audited by design.
       </p>
     ),
   },
@@ -195,7 +196,7 @@ const TESTIMONIALS: Testimonial[] = [
   },
   {
     quote: 'Nexbit has turned our month-end close from a three-week archaeology project into a three-day sprint.',
-    attribution: 'Controller · Global Health brand',
+    attribution: 'Controller · Global Beverage brand',
   },
   {
     quote: 'The visibility into settlement exceptions alone paid for the system in the first month.',
@@ -286,6 +287,71 @@ const FaqItem: React.FC<{ q: string; a: React.ReactNode; defaultOpen?: boolean }
   );
 };
 
+const Waitlist: React.FC<{ alignCenter?: boolean }> = ({ alignCenter }) => {
+  const [email, setEmail] = useState('');
+  const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState(false);
+  const [focused, setFocused] = useState(false);
+
+  const onSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!isValidEmail(email)) {
+      setError(true);
+      return;
+    }
+    setError(false);
+    submitNexbitAccountingAiEmail(email);
+    setSubmitted(true);
+  };
+
+  const placeholder = error ? '' : focused ? 'Enter your email' : 'Join waitlist';
+
+  return (
+    <div className={`nx-waitlist${alignCenter ? ' nx-waitlist--align-center' : ''}`}>
+      <form className="nx-waitlist__form" onSubmit={onSubmit} noValidate>
+        <div className="nx-waitlist__field">
+          <input
+            type="email"
+            className="nx-waitlist__input"
+            placeholder={placeholder}
+            value={email}
+            onChange={(e) => {
+              setEmail(e.target.value);
+              if (error) setError(false);
+            }}
+            onFocus={() => setFocused(true)}
+            onBlur={() => setFocused(false)}
+            disabled={submitted}
+            aria-label="Email address"
+          />
+          {error && <span className="nx-waitlist__error">Enter a valid email</span>}
+        </div>
+        <button
+          type="submit"
+          className="nx-waitlist__btn"
+          disabled={submitted}
+          aria-label="Join waitlist"
+        >
+          <svg
+            className="nx-waitlist__btn-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden
+          >
+            <line x1="5" y1="12" x2="19" y2="12" />
+            <polyline points="12 5 19 12 12 19" />
+          </svg>
+        </button>
+      </form>
+      {submitted && <p className="nx-waitlist__confirm">Thanks, we&apos;ll be in touch.</p>}
+    </div>
+  );
+};
+
 const Landing: React.FC = () => {
   const topbarRef = useRef<HTMLElement>(null);
   useReveal();
@@ -328,9 +394,7 @@ const Landing: React.FC = () => {
                   </p>
                 </div>
                 <div className="nx-hero-frame__cta">
-                  <a className="nx-btn nx-btn--outline-clay nx-btn--lg" href="#cta">
-                    Request access <span className="nx-btn__arrow" aria-hidden>→</span>
-                  </a>
+                  <Waitlist />
                 </div>
               </div>
 
@@ -347,7 +411,7 @@ const Landing: React.FC = () => {
               <div className="nx-hero-frame__divider nx-hero-frame__divider--credibility" aria-hidden />
 
               <div className="nx-hero-frame__credibility">
-                <span className="nx-meta">Bring it on</span>
+                <span className="nx-meta">Integrates with everything</span>
                 <div className="nx-hero-frame__credibility-list">
                   <span>Marketplaces</span>
                   <span>Payment gateways</span>
@@ -573,9 +637,7 @@ const Landing: React.FC = () => {
               Run finance like the <em>rest</em> of your company.
             </p>
             <div className="nx-final__cta nx-reveal">
-              <a className="nx-btn nx-btn--solid nx-btn--lg" href="mailto:hello@nexbit.ai?subject=Early%20access">
-                Request access <span className="nx-btn__arrow" aria-hidden>→</span>
-              </a>
+              <Waitlist />
             </div>
           </div>
         </section>
@@ -598,7 +660,6 @@ const Landing: React.FC = () => {
                 <a href="#capabilities">Capabilities</a>
                 <a href="#how">How it works</a>
                 <a href="#faq">FAQ</a>
-                <a href="/login">Sign in</a>
               </nav>
               <div className="nx-footer__addr nx-mono">
                 {`ACCOUNTING AI\nFOR D2C\n2026`}
@@ -612,49 +673,6 @@ const Landing: React.FC = () => {
           </div>
         </footer>
       </main>
-
-      {/* PROBLEM — moved past the footer per design direction */}
-      <section className="nx-section">
-        <div className="nx-shell">
-          {/* <div className="nx-meta nx-section__eyebrow nx-reveal">The problem</div> */}
-          <h2 className="nx-display nx-section__headline nx-reveal">
-            Finance is <span className="nx-italic">fragmented.</span>
-          </h2>
-          <p className="nx-lede nx-section__lede nx-reveal nx-prose">
-            Marketplace settlements arrive late.
-            Payouts don’t tie out. Books drift. Month-end becomes archaeology.
-          </p>
-
-          <div className="nx-problem-grid nx-reveal">
-            <div className="nx-problem-grid__item">
-              <h3 className="nx-problem-grid__title">Settlement opacity</h3>
-              <p className="nx-problem-grid__body">
-                Payments land days late, in formats no two providers agree on, with
-                fees no spreadsheet can track honestly.
-              </p>
-            </div>
-            <div className="nx-problem-grid__item">
-              <h3 className="nx-problem-grid__title">Disconnected systems</h3>
-              <p className="nx-problem-grid__body">
-                Marketplaces, gateways, logistics, ERP, and books each tell their
-                own version of the same number.
-              </p>
-            </div>
-            <div className="nx-problem-grid__item">
-              <h3 className="nx-problem-grid__title">Manual reconciliation</h3>
-              <p className="nx-problem-grid__body">
-                Spreadsheets become the source of truth. They shouldn’t be.
-              </p>
-            </div>
-            <div className="nx-problem-grid__item">
-              <h3 className="nx-problem-grid__title">Slow close</h3>
-              <p className="nx-problem-grid__body">
-                Month-end takes weeks. By the time the numbers land, the month is already gone.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
     </div>
   );
 };
