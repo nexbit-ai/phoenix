@@ -1,0 +1,238 @@
+/* Referral page — page-local styles. Tokens & primitives come from landing.css. */
+
+.nx-refer {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+/* First section runs the brand green full-bleed under the sticky topbar. */
+.nx-refer-hero {
+  position: relative;
+  background: var(--ink-deep);
+  color: var(--on-dark-strong);
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  padding-left: calc(50vw - 50%);
+  padding-right: calc(50vw - 50%);
+  padding-top: calc(64px + var(--s8));
+}
+
+.nx-refer-hero .nx-section__headline,
+.nx-refer-hero .nx-display {
+  color: var(--on-dark-strong);
+}
+
+.nx-refer-hero .nx-lede,
+.nx-refer-hero .nx-section__lede {
+  color: var(--on-dark-soft);
+}
+
+.nx-refer-bounty {
+  margin-top: var(--s5);
+}
+
+.nx-refer-bounty__pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--on-dark-line);
+  background: rgba(251, 248, 242, 0.06);
+  font-family: var(--text);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--on-dark-soft);
+}
+
+.nx-refer-bounty__amount {
+  color: var(--clay);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.nx-refer-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--s9);
+  align-items: start;
+}
+
+.nx-refer-split__intro {
+  position: sticky;
+  top: calc(64px + var(--s5));
+}
+
+.nx-refer-form {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--s7);
+  max-width: 560px;
+}
+
+.nx-refer-fieldset {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s5);
+}
+
+.nx-refer-legend {
+  font-family: var(--hero);
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  text-transform: none;
+  color: var(--on-dark-strong);
+  width: 100%;
+  padding: 0 0 var(--s3);
+  margin: 0 0 var(--s3);
+  border-bottom: 1px solid var(--on-dark-line);
+}
+
+.nx-refer-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.nx-refer-label {
+  font-family: var(--text);
+  font-size: 13px;
+  letter-spacing: 0.01em;
+  color: var(--on-dark-soft);
+}
+
+.nx-refer-input {
+  font-family: var(--text);
+  font-size: 16px;
+  line-height: 1.4;
+  color: var(--ink);
+  background: var(--paper-soft);
+  border: 1px solid var(--on-dark-line);
+  border-radius: 10px;
+  padding: 12px 14px;
+  outline: none;
+  transition: border-color 200ms ease, box-shadow 200ms ease;
+  -webkit-appearance: none;
+}
+
+.nx-refer-input:hover {
+  border-color: var(--on-dark-line-soft);
+}
+
+.nx-refer-input:focus {
+  border-color: var(--clay);
+  box-shadow: 0 0 0 2px rgba(181, 105, 79, 0.35);
+}
+
+.nx-refer-input:disabled {
+  color: var(--ink-mute);
+  cursor: not-allowed;
+}
+
+.nx-refer-field.has-error .nx-refer-input {
+  border-color: var(--clay);
+}
+
+.nx-refer-field-error {
+  font-family: var(--text);
+  font-size: 12px;
+  color: var(--clay);
+  letter-spacing: 0.01em;
+}
+
+.nx-refer-error {
+  grid-column: 1 / -1;
+  padding: 14px 16px;
+  border: 1px solid var(--on-dark-line);
+  border-left: 2px solid var(--clay);
+  background: var(--paper-soft);
+  color: var(--ink);
+  font-size: 14px;
+  border-radius: 8px;
+}
+
+.nx-refer-error a {
+  color: var(--clay);
+  text-decoration: underline;
+}
+
+.nx-refer-submit {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: flex-start;
+  margin-top: var(--s3);
+}
+
+.nx-refer-success {
+  max-width: 720px;
+  padding: var(--s7) 0;
+  border-top: 1px solid var(--on-dark-line);
+}
+
+.nx-refer-success__line {
+  font-family: var(--display);
+  font-size: 36px;
+  line-height: 1.15;
+  color: var(--on-dark-strong);
+  margin: 0 0 var(--s4);
+}
+
+.nx-refer-success__meta {
+  font-family: var(--text);
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--on-dark-soft);
+  margin: 0;
+  max-width: 580px;
+}
+
+.nx-refer-trust {
+  font-family: var(--text);
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--on-dark-mute);
+  margin: var(--s6) 0 0;
+  padding-top: var(--s5);
+  border-top: 1px solid var(--on-dark-line);
+  max-width: 520px;
+}
+
+/* Submit button needs to pop on the dark green background. */
+.nx-refer-hero .nx-btn--solid {
+  background: var(--on-dark-strong);
+  color: var(--ink-deep);
+  border-color: var(--on-dark-strong);
+}
+
+.nx-refer-hero .nx-btn--solid:hover {
+  background: var(--paper);
+  border-color: var(--paper);
+}
+
+@media (max-width: 900px) {
+  .nx-refer-split {
+    grid-template-columns: 1fr;
+    gap: var(--s8);
+  }
+  .nx-refer-split__intro {
+    position: static;
+    top: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .nx-refer-form {
+    gap: var(--s6);
+  }
+  .nx-refer-success__line {
+    font-size: 28px;
+  }
+  .nx-refer-hero {
+    padding-top: calc(64px + var(--s6));
+  }
+}

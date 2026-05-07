@@ -25,3 +25,46 @@ export function submitNexbitAccountingAiEmail(email: string): void {
       console.warn('Failed to submit waitlist email to SheetDB:', error);
     });
 }
+
+export interface ReferralPayload {
+  referrer_name: string;
+  referrer_email: string;
+  referrer_company: string;
+  referred_name: string;
+  referred_company: string;
+}
+
+// TODO: replace with the SheetDB endpoint URL once the referrals sheet exists.
+const REFERRAL_SHEETDB_URL = 'https://sheetdb.io/api/v1/y05i2bufwn6tt';
+
+export async function submitReferral(payload: ReferralPayload): Promise<boolean> {
+  const row = {
+    timestamp: new Date().toISOString(),
+    referrer_name: payload.referrer_name.trim(),
+    referrer_email: payload.referrer_email.trim().toLowerCase(),
+    referrer_company: payload.referrer_company.trim(),
+    referred_name: payload.referred_name.trim(),
+    referred_company: payload.referred_company.trim(),
+  };
+
+  if (!REFERRAL_SHEETDB_URL) {
+    console.log('[referral stub] would POST:', row);
+    await new Promise((r) => setTimeout(r, 600));
+    return true;
+  }
+
+  try {
+    const res = await fetch(REFERRAL_SHEETDB_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(row),
+    });
+    if (!res.ok) {
+      console.warn(`SheetDB referral API error: ${res.status}`);
+    }
+    return res.ok;
+  } catch (err) {
+    console.warn('Failed to submit referral to SheetDB:', err);
+    return false;
+  }
+}

@@ -1,6 +1,7 @@
 import Landing from './pages/landing/Landing';
 import ExtensionPrivacyPage from './pages/extension-privacy/ExtensionPrivacyPage';
 import CureskinPricingPage from './pages/cureskin-pricing/CureskinPricingPage';
+import ReferralPage from './pages/referral/ReferralPage';
 
 export default function App() {
   const path = window.location.pathname.replace(/\/+$/, '');
@@ -9,6 +10,9 @@ export default function App() {
   }
   if (path === '/cureskin-pricing') {
     return <CureskinPricingPage />;
+  }
+  if (path === '/refer') {
+    return <ReferralPage />;
   }
   return <Landing />;
 }

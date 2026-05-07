@@ -8,6 +8,8 @@ import {
   ReconciliationLedger,
 } from './visuals';
 import { isValidEmail, submitNexbitAccountingAiEmail } from '../../utils/sheetdb';
+import { useReveal } from '../../utils/useReveal';
+import { Wordmark } from '../../components/Wordmark';
 import './landing.css';
 
 /**
@@ -204,37 +206,6 @@ const TESTIMONIALS: Testimonial[] = [
   },
 ];
 
-function useReveal() {
-  useEffect(() => {
-    const els = document.querySelectorAll<HTMLElement>('.nx-reveal');
-    if (!els.length) return;
-
-    if (
-      typeof window !== 'undefined' &&
-      window.matchMedia &&
-      window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    ) {
-      els.forEach((el) => el.classList.add('is-in'));
-      return;
-    }
-
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            (entry.target as HTMLElement).classList.add('is-in');
-            io.unobserve(entry.target);
-          }
-        });
-      },
-      { rootMargin: '0px 0px -15% 0px', threshold: 0.05 }
-    );
-
-    els.forEach((el) => io.observe(el));
-    return () => io.disconnect();
-  }, []);
-}
-
 function useStickyTopbar(ref: React.RefObject<HTMLElement | null>) {
   useEffect(() => {
     const onScroll = () => {
@@ -248,13 +219,6 @@ function useStickyTopbar(ref: React.RefObject<HTMLElement | null>) {
     return () => window.removeEventListener('scroll', onScroll);
   }, [ref]);
 }
-
-const Wordmark: React.FC<{ size?: 'sm' | 'md' }> = ({ size = 'md' }) => (
-  <span className="nx-wordmark" style={size === 'sm' ? { fontSize: 18 } : undefined}>
-    <img src={logoFresh} alt="" className="nx-wordmark__logo" aria-hidden />
-    Nexbit
-  </span>
-);
 
 const FaqItem: React.FC<{ q: string; a: React.ReactNode; defaultOpen?: boolean }> = ({
   q,
