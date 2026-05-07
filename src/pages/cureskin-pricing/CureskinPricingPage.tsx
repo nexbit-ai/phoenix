@@ -253,7 +253,7 @@ const PinGate: React.FC<{ onUnlock: () => void }> = ({ onUnlock }) => {
       <footer className="nx-pricing__gate-foot">
         <span className="nx-pricing__meta">
           Don't have the code? Email{' '}
-          <a href="mailto:founder@nexbit.ai">founder@nexbit.ai</a>
+          <a href="mailto:shubh@usenexbit.com">shubh@usenexbit.com</a>
         </span>
         <span className="nx-pricing__meta">© Logikeon Labs Private Limited</span>
       </footer>
