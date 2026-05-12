@@ -31,6 +31,7 @@ interface FormFields {
   referrerEmail: string;
   referrerCompany: string;
   referredName: string;
+  referredPhoneOrEmail: string;
   referredCompany: string;
 }
 
@@ -39,6 +40,7 @@ const EMPTY: FormFields = {
   referrerEmail: '',
   referrerCompany: '',
   referredName: '',
+  referredPhoneOrEmail: '',
   referredCompany: '',
 };
 
@@ -110,6 +112,7 @@ const ReferralForm: React.FC = () => {
       next.referrerEmail = 'Enter a valid email';
     if (!fields.referrerCompany.trim()) next.referrerCompany = 'Required';
     if (!fields.referredName.trim()) next.referredName = 'Required';
+    if (!fields.referredPhoneOrEmail.trim()) next.referredPhoneOrEmail = 'Required';
     if (!fields.referredCompany.trim()) next.referredCompany = 'Required';
     setErrors(next);
     return Object.keys(next).length === 0;
@@ -125,6 +128,7 @@ const ReferralForm: React.FC = () => {
       referrer_email: fields.referrerEmail,
       referrer_company: fields.referrerCompany,
       referred_name: fields.referredName,
+      referred_phone_or_email: fields.referredPhoneOrEmail,
       referred_company: fields.referredCompany,
     });
     setState(ok ? 'success' : 'error');
@@ -189,6 +193,14 @@ const ReferralForm: React.FC = () => {
           value={fields.referredName}
           onChange={set('referredName')}
           error={errors.referredName}
+          disabled={submitting}
+        />
+        <Field
+          id="referred-phone-or-email"
+          label="Their phone or email"
+          value={fields.referredPhoneOrEmail}
+          onChange={set('referredPhoneOrEmail')}
+          error={errors.referredPhoneOrEmail}
           disabled={submitting}
         />
         <Field

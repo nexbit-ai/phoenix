@@ -31,6 +31,7 @@ export interface ReferralPayload {
   referrer_email: string;
   referrer_company: string;
   referred_name: string;
+  referred_phone_or_email: string;
   referred_company: string;
 }
 
@@ -44,6 +45,7 @@ export async function submitReferral(payload: ReferralPayload): Promise<boolean>
     referrer_email: payload.referrer_email.trim().toLowerCase(),
     referrer_company: payload.referrer_company.trim(),
     referred_name: payload.referred_name.trim(),
+    referred_phone_or_email: payload.referred_phone_or_email.trim(),
     referred_company: payload.referred_company.trim(),
   };
 
