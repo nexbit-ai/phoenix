@@ -1,0 +1,858 @@
+/* =========================================================
+   Nexbit — Public Pricing & Calculator CSS
+   Scoped under .nx-pricing-public. Matches the landing 
+   design language (paper/ink/clay palette & editorial look).
+   ========================================================= */
+
+.nx-pricing-public {
+  /* Color tokens */
+  --paper: #f6f2ea;
+  --paper-soft: #fbf8f2;
+  --paper-deep: #ede7da;
+  --ink: #14201e;
+  --ink-soft: #3e4a47;
+  --ink-mute: #6e7773;
+  --hairline: #d9d2c2;
+  --hairline-soft: #e3ddcf;
+  --sage: #d6decc;
+  --mist: #d2dce0;
+  --mint: #dde7dd;
+  --sand: #e8dfcc;
+  --stone: #dbd7cc;
+  --teal: #1f3a36;
+  --teal-hover: #14201e;
+  --clay: #b5694f;
+  --clay-hover: #9d5a43;
+  --clay-transparent: rgba(181, 105, 79, 0.08);
+
+  --s1: 4px;
+  --s2: 8px;
+  --s3: 12px;
+  --s4: 16px;
+  --s5: 24px;
+  --s6: 32px;
+  --s7: 48px;
+  --s8: 72px;
+  --s9: 96px;
+
+  --shell-max: 1100px;
+  --gutter: 32px;
+
+  --display: "Fraunces", "Iowan Old Style", Georgia, serif;
+  --text: "Inter Tight", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  --hero: "Inter Tight", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--text);
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.nx-pricing-public *,
+.nx-pricing-public *::before,
+.nx-pricing-public *::after {
+  box-sizing: border-box;
+}
+
+.nx-pricing-public a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.nx-pricing-public button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: inherit;
+}
+
+/* ---------- Skip link for accessibility ---------- */
+.nx-pricing-public .nx-skip {
+  position: absolute;
+  top: -9999px;
+  left: 12px;
+  background: var(--paper-soft);
+  color: var(--ink);
+  padding: 8px 16px;
+  border: 1px solid var(--hairline);
+  z-index: 1000;
+}
+.nx-pricing-public .nx-skip:focus {
+  top: 12px;
+}
+
+/* ---------- Reveal animation classes ---------- */
+.nx-pricing-public .nx-reveal {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 600ms cubic-bezier(0.16, 1, 0.3, 1), transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nx-pricing-public .nx-reveal.is-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---------- Structural Layout primitives ---------- */
+.nx-pricing-public__shell {
+  max-width: var(--shell-max);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.nx-pricing-public__italic {
+  font-family: var(--display);
+  font-style: italic;
+  font-weight: 400;
+}
+
+.nx-pricing-public__display {
+  font-family: var(--display);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  font-size: clamp(32px, 4.4vw, 56px);
+  line-height: 1.05;
+  color: var(--ink);
+  margin: 8px 0 0;
+}
+
+.nx-pricing-public__meta {
+  font-family: var(--text);
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--ink-mute);
+  display: inline-block;
+}
+
+/* ---------- Sticky topbar ---------- */
+.nx-pricing-public__topbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(246, 242, 234, 0.86);
+  backdrop-filter: saturate(140%) blur(10px);
+  -webkit-backdrop-filter: saturate(140%) blur(10px);
+  border-bottom: 1px solid var(--hairline);
+  color: var(--ink);
+  transition: background 250ms ease, border-color 250ms ease;
+}
+
+.nx-pricing-public__topbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+
+/* Header navbar routing styling */
+.nx-pricing-public__topbar .nx-nav {
+  display: flex;
+  align-items: center;
+  gap: var(--s5);
+}
+
+.nx-pricing-public__topbar .nx-nav__link {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink-soft);
+  position: relative;
+  padding: 6px 0;
+  transition: color 150ms ease;
+}
+
+.nx-pricing-public__topbar .nx-nav__link:hover {
+  color: var(--ink);
+}
+
+.nx-pricing-public__topbar .nx-nav__link::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--clay);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 200ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nx-pricing-public__topbar .nx-nav__link:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Top bar CTAs */
+.nx-pricing-public__topbar-cta {
+  display: flex;
+  align-items: center;
+  gap: var(--s4);
+}
+
+.nx-pricing-public__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 38px;
+  padding: 0 18px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  transition: background 150ms ease, border-color 150ms ease, color 150ms ease;
+}
+
+.nx-pricing-public__btn--solid {
+  background: var(--teal);
+  color: var(--paper-soft);
+  border: 1px solid var(--teal);
+}
+
+.nx-pricing-public__btn--solid:hover {
+  background: var(--ink);
+  border-color: var(--ink);
+}
+
+.nx-pricing-public__btn--ghost {
+  border: 1px solid var(--hairline);
+  background: transparent;
+  color: var(--ink-soft);
+}
+
+.nx-pricing-public__btn--ghost:hover {
+  background: var(--paper-soft);
+  color: var(--ink);
+}
+
+/* =========================================================
+   HERO / MAIN INTRO
+   ========================================================= */
+.nx-pricing-public__hero {
+  padding: var(--s8) 0 var(--s5);
+  text-align: center;
+  position: relative;
+}
+
+.nx-pricing-public__hero-lede {
+  font-size: clamp(17px, 2vw, 22px);
+  line-height: 1.45;
+  color: var(--ink-soft);
+  max-width: 48ch;
+  margin: var(--s4) auto 0;
+}
+
+/* =========================================================
+   INTERACTIVE CALCULATOR SYSTEM
+   ========================================================= */
+.nx-pricing-public__calculator-wrap {
+  padding: 0 0 var(--s8);
+}
+
+.nx-pricing-public__calc-box {
+  background: var(--paper-soft);
+  border: 1px solid var(--hairline);
+  border-radius: 12px;
+  padding: 56px var(--s7);
+  box-shadow: 0 1px 0 rgba(20, 32, 30, 0.02);
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+/* Toggler billing intervals */
+.nx-pricing-public__toggle-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: var(--s7);
+}
+
+.nx-pricing-public__toggle-pill {
+  background: var(--paper);
+  border: 1px solid var(--hairline);
+  border-radius: 999px;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 260px; /* Perfect mathematical symmetry */
+}
+
+.nx-pricing-public__toggle-btn {
+  flex: 1; /* Symmetric button widths */
+  height: 32px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-mute);
+  transition: color 150ms ease;
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nx-pricing-public__toggle-btn.is-active {
+  color: var(--ink);
+}
+
+/* Animated toggle background slider */
+.nx-pricing-public__toggle-bg {
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  left: 4px;
+  width: calc(50% - 4px);
+  background: var(--paper-soft);
+  border: 1px solid var(--hairline);
+  border-radius: 999px;
+  transition: transform 250ms cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 1;
+}
+
+.nx-pricing-public__toggle-bg.is-annual {
+  transform: translateX(100%);
+}
+
+.nx-pricing-public__discount-badge {
+  position: absolute;
+  top: -14px; /* Float elegantly above button */
+  right: 12px;
+  background: var(--clay-transparent);
+  color: var(--clay);
+  border: 1px solid rgba(181, 105, 79, 0.15);
+  font-size: 9px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 1px 6px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+/* Slider, inputs & slider controls */
+.nx-pricing-public__calc-fields {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: var(--s6) var(--s7);
+  align-items: center;
+  border-bottom: 1px solid var(--hairline);
+  padding-bottom: var(--s6);
+}
+
+.nx-pricing-public__label-desc {
+  font-size: 15px;
+  color: var(--ink-soft);
+  margin: 4px 0 0;
+}
+
+/* Transaction numeric input block */
+.nx-pricing-public__input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.nx-pricing-public__num-input {
+  width: 100%;
+  height: 52px;
+  background: var(--paper);
+  border: 1px solid var(--hairline);
+  border-radius: 8px;
+  padding: 0 16px;
+  font-family: var(--text);
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--ink);
+  outline: none;
+  transition: border-color 150ms ease, background 150ms ease;
+  font-variant-numeric: tabular-nums;
+}
+
+.nx-pricing-public__num-input:focus {
+  border-color: var(--clay);
+  background: var(--paper-soft);
+}
+
+.nx-pricing-public__input-suffix {
+  position: absolute;
+  right: 16px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-mute);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  pointer-events: none;
+}
+
+/* Custom styled Range Input slider */
+.nx-pricing-public__slider-container {
+  grid-column: span 2;
+  margin-top: var(--s3);
+  position: relative;
+}
+
+.nx-pricing-public__range-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--hairline);
+  outline: none;
+  margin: 12px 0;
+  cursor: pointer;
+  background-image: linear-gradient(var(--clay), var(--clay));
+  background-repeat: no-repeat;
+}
+
+/* range input thumb - Chrome/Safari/Edge */
+.nx-pricing-public__range-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 999px;
+  background: var(--clay);
+  border: 2px solid var(--paper-soft);
+  box-shadow: 0 2px 4px rgba(20, 32, 30, 0.12);
+  transition: transform 150ms cubic-bezier(0.16, 1, 0.3, 1), background 150ms ease;
+}
+
+.nx-pricing-public__range-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+  background: var(--clay-hover);
+}
+
+.nx-pricing-public__range-slider::-webkit-slider-thumb:active {
+  transform: scale(0.95);
+  background: var(--teal);
+}
+
+/* range input thumb - Firefox */
+.nx-pricing-public__range-slider::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  background: var(--clay);
+  border: 2px solid var(--paper-soft);
+  box-shadow: 0 2px 4px rgba(20, 32, 30, 0.12);
+  transition: transform 150ms cubic-bezier(0.16, 1, 0.3, 1), background 150ms ease;
+  cursor: pointer;
+}
+
+.nx-pricing-public__range-slider::-moz-range-thumb:hover {
+  transform: scale(1.15);
+  background: var(--clay-hover);
+}
+
+.nx-pricing-public__range-slider::-moz-range-thumb:active {
+  transform: scale(0.95);
+  background: var(--teal);
+}
+
+/* range slider ticks/indicators */
+.nx-pricing-public__slider-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--ink-mute);
+  margin-top: var(--s2);
+  font-family: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Dynamic Pricing outputs */
+.nx-pricing-public__calc-result {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: var(--s6);
+  flex-wrap: wrap;
+  gap: var(--s5);
+}
+
+.nx-pricing-public__price-headline {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s1);
+}
+
+.nx-pricing-public__final-amount {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(38px, 5.2vw, 64px);
+  line-height: 0.95;
+  color: var(--ink);
+  display: flex;
+  align-items: baseline;
+  letter-spacing: -0.02em;
+}
+
+.nx-pricing-public__price-period {
+  font-family: var(--display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(16px, 1.8vw, 20px);
+  color: var(--ink-soft);
+  margin-left: 8px;
+}
+
+.nx-pricing-public__price-subtext {
+  font-size: 13px;
+  color: var(--ink-mute);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Active caps and threshold badges */
+.nx-pricing-public__threshold-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--hairline);
+  background: var(--paper);
+  color: var(--ink-soft);
+  font-size: 12px;
+  font-weight: 500;
+  transition: all 250ms ease;
+}
+
+.nx-pricing-public__threshold-badge.is-cap {
+  border-color: rgba(181, 105, 79, 0.25);
+  background: var(--clay-transparent);
+  color: var(--clay);
+}
+
+.nx-pricing-public__threshold-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--ink-mute);
+}
+
+.nx-pricing-public__threshold-badge.is-cap .nx-pricing-public__threshold-dot {
+  background: var(--clay);
+  box-shadow: 0 0 4px rgba(181, 105, 79, 0.4);
+}
+
+/* Responsive grid collapsing for fields */
+@media (max-width: 760px) {
+  .nx-pricing-public__calc-box {
+    padding: 38px var(--s5) 32px;
+  }
+  .nx-pricing-public__calc-fields {
+    grid-template-columns: 1fr;
+    gap: var(--s5);
+  }
+  .nx-pricing-public__slider-container {
+    grid-column: span 1;
+  }
+  .nx-pricing-public__calc-result {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--s5);
+  }
+  .nx-pricing-public__threshold-badge {
+    align-self: flex-start;
+  }
+}
+
+/* =========================================================
+   VALUE & ROI LAYOUT (PASTEL SECTIONS)
+   ========================================================= */
+.nx-pricing-public__section {
+  padding: var(--s8) 0;
+  position: relative;
+}
+
+.nx-pricing-public__band {
+  position: relative;
+}
+
+.nx-pricing-public__band--paper-deep { background: var(--paper-deep); }
+.nx-pricing-public__band--mint { background: var(--mint); }
+
+@media (max-width: 760px) {
+  .nx-pricing-public__section { padding: var(--s7) 0; }
+}
+
+/* ROI checklist elements */
+.nx-pricing-public__roi-grid {
+  list-style: none;
+  margin: var(--s6) 0 0;
+  padding: 0;
+  border-top: 1px solid var(--hairline);
+}
+
+.nx-pricing-public__roi-item {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: var(--s5);
+  padding: var(--s5) 0;
+  border-bottom: 1px solid var(--hairline);
+  align-items: baseline;
+}
+
+.nx-pricing-public__roi-num {
+  font-family: var(--display);
+  font-style: italic;
+  font-size: 28px;
+  line-height: 1;
+  font-weight: 400;
+  color: var(--clay);
+  font-variant-numeric: tabular-nums;
+}
+
+.nx-pricing-public__roi-title {
+  font-family: var(--text);
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  margin: 0 0 4px;
+  color: var(--ink);
+}
+
+.nx-pricing-public__roi-body {
+  margin: 0;
+  font-size: 15px;
+  color: var(--ink-soft);
+  max-width: 62ch;
+  line-height: 1.5;
+}
+
+@media (max-width: 720px) {
+  .nx-pricing-public__roi-item {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    padding: var(--s4) 0;
+  }
+  .nx-pricing-public__roi-num { font-size: 24px; }
+}
+
+/* =========================================================
+   PLAN INCLUSIONS / FEATURES LIST
+   ========================================================= */
+.nx-pricing-public__inclusions-grid {
+  list-style: none;
+  margin: var(--s6) 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  border-top: 1px solid var(--hairline);
+}
+
+.nx-pricing-public__inclusion {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: var(--s4) var(--s5) var(--s4) 0;
+  border-bottom: 1px solid var(--hairline);
+  font-size: 15px;
+  color: var(--ink);
+  line-height: 1.45;
+}
+
+.nx-pricing-public__inclusion:nth-child(odd) {
+  padding-right: var(--s6);
+  border-right: 1px solid var(--hairline);
+}
+
+.nx-pricing-public__inclusion:nth-child(even) {
+  padding-left: var(--s6);
+}
+
+.nx-pricing-public__check-container {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  background: var(--mint);
+  color: var(--teal);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nx-pricing-public__check-container svg {
+  width: 12px;
+  height: 12px;
+}
+
+@media (max-width: 760px) {
+  .nx-pricing-public__inclusions-grid {
+    grid-template-columns: 1fr;
+  }
+  .nx-pricing-public__inclusion {
+    padding: var(--s3) 0 !important;
+    border-right: none !important;
+  }
+}
+
+/* =========================================================
+   CTA BAND (PASTEL MINT BLUE)
+   ========================================================= */
+.nx-pricing-public__band--mist {
+  background: var(--mist);
+}
+
+.nx-pricing-public__final-band {
+  text-align: center;
+  padding: var(--s8) 0;
+}
+
+.nx-pricing-public__final-headline {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(28px, 4.2vw, 48px);
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  margin: 0 auto var(--s5);
+  max-width: 26ch;
+}
+
+/* =========================================================
+   FOOTER STYLE PARITY
+   ========================================================= */
+.nx-pricing-public__footer {
+  border-top: 1px solid var(--hairline);
+  padding: var(--s7) 0 var(--s5);
+  background: var(--paper);
+}
+
+.nx-pricing-public__footer-row {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: var(--s6);
+  align-items: start;
+}
+
+.nx-pricing-public__footer-brand {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: 22px;
+  color: var(--ink);
+  margin-bottom: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nx-pricing-public__footer-brand img {
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
+  object-fit: cover;
+}
+
+.nx-pricing-public__footer-line {
+  font-size: 14px;
+  color: var(--ink-soft);
+  max-width: 38ch;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.nx-pricing-public__footer-addr {
+  white-space: pre-line;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--ink-mute);
+  text-align: right;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.nx-pricing-public__footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--hairline);
+  margin-top: var(--s7);
+  padding-top: var(--s5);
+  flex-wrap: wrap;
+  gap: var(--s4);
+}
+
+@media (max-width: 760px) {
+  .nx-pricing-public__footer-row {
+    grid-template-columns: 1fr;
+    gap: var(--s5);
+  }
+  .nx-pricing-public__footer-addr {
+    text-align: left;
+  }
+}
+
+/* ---------- Enterprise Option styles ---------- */
+.nx-pricing-public__enterprise-result {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--s5) var(--s7);
+  align-items: center;
+  width: 100%;
+}
+
+.nx-pricing-public__enterprise-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s1);
+  text-align: left;
+}
+
+.nx-pricing-public__enterprise-title {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(28px, 4vw, 40px);
+  line-height: 1.1;
+  color: var(--ink);
+  margin: var(--s2) 0;
+  letter-spacing: -0.015em;
+}
+
+.nx-pricing-public__enterprise-title em {
+  font-family: var(--display);
+  font-style: italic;
+  font-weight: 400;
+}
+
+.nx-pricing-public__enterprise-desc {
+  font-size: 14px;
+  color: var(--ink-soft);
+  margin: 0;
+  max-width: 50ch;
+  line-height: 1.5;
+}
+
+.nx-pricing-public__btn--large {
+  height: 48px;
+  padding: 0 28px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 999px;
+  background: var(--clay);
+  border-color: var(--clay);
+  color: var(--paper-soft);
+}
+
+.nx-pricing-public__btn--large:hover {
+  background: var(--clay-hover);
+  border-color: var(--clay-hover);
+}
+
+@media (max-width: 760px) {
+  .nx-pricing-public__enterprise-result {
+    grid-template-columns: 1fr;
+    gap: var(--s5);
+  }
+}
+

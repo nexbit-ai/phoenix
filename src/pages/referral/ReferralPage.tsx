@@ -216,7 +216,7 @@ const ReferralForm: React.FC = () => {
       {state === 'error' && (
         <div className="nx-refer-error" role="alert">
           Something went wrong. Please try again, or email{' '}
-          <a href="mailto:shubh@usenexbit.com">shubh@usenexbit.com</a>.
+          <a href="mailto:founders@usenexbit.com">founders@usenexbit.com</a>.
         </div>
       )}
 
@@ -330,11 +330,21 @@ const ReferralPage: React.FC = () => {
                   Accounting AI for D2C. The operating layer for revenue,
                   settlements, books, and the close.
                 </p>
+                <p className="nx-footer__line" style={{ marginTop: '12px' }}>
+                  Contact us:{' '}
+                  <a
+                    href="mailto:founders@usenexbit.com"
+                    style={{ color: 'inherit', textDecoration: 'underline' }}
+                  >
+                    founders@usenexbit.com
+                  </a>
+                </p>
               </div>
               <nav className="nx-footer__nav" aria-label="Footer">
                 <a href="/#capabilities">Capabilities</a>
                 <a href="/#how">How it works</a>
                 <a href="/#faq">FAQ</a>
+                <a href="mailto:founders@usenexbit.com">Contact Us</a>
               </nav>
               <div className="nx-footer__addr nx-mono">
                 {`ACCOUNTING AI\nFOR D2C\n2026`}

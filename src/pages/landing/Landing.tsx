@@ -330,6 +330,7 @@ const Landing: React.FC = () => {
         <div className="nx-shell nx-topbar__inner">
           <a href="#" aria-label="Nexbit home"><Wordmark /></a>
           <nav className="nx-nav" aria-label="Primary">
+            <a className="nx-nav__link" href="/pricing">Pricing</a>
             <a className="nx-nav__link" href="/blogs">Blogs</a>
             <a className="nx-nav__link" href="#capabilities">Capabilities</a>
             <a className="nx-nav__link" href="#how">How it works</a>
@@ -620,11 +621,21 @@ const Landing: React.FC = () => {
                   Accounting AI for D2C. The operating layer for revenue,
                   settlements, books, and the close.
                 </p>
+                <p className="nx-footer__line" style={{ marginTop: '12px' }}>
+                  Contact us:{' '}
+                  <a
+                    href="mailto:founders@usenexbit.com"
+                    style={{ color: 'inherit', textDecoration: 'underline' }}
+                  >
+                    founders@usenexbit.com
+                  </a>
+                </p>
               </div>
               <nav className="nx-footer__nav" aria-label="Footer">
                 <a href="#capabilities">Capabilities</a>
                 <a href="#how">How it works</a>
                 <a href="#faq">FAQ</a>
+                <a href="mailto:founders@usenexbit.com">Contact Us</a>
               </nav>
               <div className="nx-footer__addr nx-mono">
                 {`ACCOUNTING AI\nFOR D2C\n2026`}

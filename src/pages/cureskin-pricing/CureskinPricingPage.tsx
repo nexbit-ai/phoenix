@@ -253,7 +253,7 @@ const PinGate: React.FC<{ onUnlock: () => void }> = ({ onUnlock }) => {
       <footer className="nx-pricing__gate-foot">
         <span className="nx-pricing__meta">
           Don't have the code? Email{' '}
-          <a href="mailto:shubh@usenexbit.com">shubh@usenexbit.com</a>
+          <a href="mailto:founders@usenexbit.com">founders@usenexbit.com</a>
         </span>
         <span className="nx-pricing__meta">© Logikeon Labs Private Limited</span>
       </footer>
@@ -419,6 +419,15 @@ const Pricing: React.FC = () => {
               <p className="nx-pricing__footer-line">
                 This pricing is prepared exclusively for Cure And Care Wellness
                 Pvt Ltd.
+              </p>
+              <p className="nx-pricing__footer-line" style={{ marginTop: '12px' }}>
+                Contact us:{' '}
+                <a
+                  href="mailto:founders@usenexbit.com"
+                  style={{ color: 'inherit', textDecoration: 'underline' }}
+                >
+                  founders@usenexbit.com
+                </a>
               </p>
             </div>
             <div className="nx-pricing__footer-meta nx-pricing__meta">
