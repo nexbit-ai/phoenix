@@ -1,6 +1,6 @@
 import Landing from './pages/landing/Landing';
 import ExtensionPrivacyPage from './pages/extension-privacy/ExtensionPrivacyPage';
-// import CureskinPricingPage from './pages/cureskin-pricing/CureskinPricingPage';
+import CureskinPricingPage from './pages/cureskin-pricing/CureskinPricingPage';
 import ReferralPage from './pages/referral/ReferralPage';
 import PricingPage from './pages/pricing/PricingPage';
 import { BlogPage } from './pages/blog/BlogPage';
@@ -20,10 +20,9 @@ export default function App() {
   if (path === '/extension-privacy-policy' || path === '/extension-privacy-page') {
     return <ExtensionPrivacyPage />;
   }
-  // Cureskin pricing page taken down but code kept
-  // if (path === '/cureskin-pricing') {
-  //   return <CureskinPricingPage />;
-  // }
+  if (path === '/cureskin-pricing') {
+    return <CureskinPricingPage />;
+  }
   if (path === '/pricing') {
     return <PricingPage />;
   }

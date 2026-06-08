@@ -5,14 +5,7 @@ import './cureskin-pricing.css';
 const PIN = '4729';
 const UNLOCK_KEY = 'nx-cureskin-pricing-unlocked-v1';
 
-type RoiItem = { label: string; body: string };
-const ROI: RoiItem[] = [
-  { label: 'Hidden revenue', body: 'Uncover lost revenue due to incorrect commissions and reconciliation.' },
-  { label: 'Error reduction', body: '99%+ improvement in reconciliation accuracy.' },
-  { label: 'Time saved', body: '~50+ hours each month.' },
-  { label: 'Process efficiency', body: 'Automated workflows replacing manual tasks.' },
-  { label: 'Real-time visibility', body: 'Instant dispute identification & resolution.' },
-];
+
 
 const INCLUSIONS: string[] = [
   'Unlimited transactions',
@@ -293,7 +286,7 @@ const Pricing: React.FC = () => {
 
                   <div className="nx-pricing__price">
                     <span className="nx-pricing__price-currency">₹</span>
-                    <span className="nx-pricing__price-amount">2,49,999</span>
+                    <span className="nx-pricing__price-amount">40,999</span>
                     <span className="nx-pricing__price-period">/ month</span>
                   </div>
 
@@ -320,27 +313,109 @@ const Pricing: React.FC = () => {
           </div>
         </section>
 
-        {/* ROI */}
+        {/* What you're getting */}
         <section className="nx-pricing__section nx-pricing__band nx-pricing__band--paper-deep">
           <div className="nx-pricing__shell">
-            <span className="nx-pricing__meta nx-reveal">ROI</span>
+            <span className="nx-pricing__meta nx-reveal">Overview</span>
             <h2 className="nx-pricing__display nx-reveal">
-              Return on <span className="nx-pricing__italic">investment.</span>
+              What you're <span className="nx-pricing__italic">getting.</span>
             </h2>
 
-            <ol className="nx-pricing__roi nx-reveal">
-              {ROI.map((r, i) => (
-                <li key={r.label} className="nx-pricing__roi-item">
-                  <span className="nx-pricing__roi-num">
-                    {String(i + 1).padStart(2, '0')}
+            <div className="nx-pricing__value-intro nx-reveal">
+              <p>
+                A single system that ingests every order, settlement, payout, and return
+                across Amazon India, Flipkart, your D2C portal, Amazon UK, and Amazon
+                UAE, reconciled continuously, not at month-end.
+              </p>
+              <p className="nx-pricing__value-highlight">
+                Two things in one subscription: the{' '}
+                <strong>Reconciliation Engine</strong> and{' '}
+                <strong>live reporting</strong>.
+              </p>
+            </div>
+
+            {/* Reconciliation Engine */}
+            <div className="nx-pricing__value-block nx-reveal">
+              <h3 className="nx-pricing__value-title">Reconciliation Engine</h3>
+              <div className="nx-pricing__value-prose">
+                <p>
+                  Finance team currently closes books in 7–14 days every month. With
+                  Nexbit, reconciliation runs in the background as transactions
+                  happen, so close takes a few hours, not weeks.
+                </p>
+                <p>
+                  At 4 lakh orders a month across multiple marketplaces and channels,
+                  exceptions like missed settlements, weight disputes, and return
+                  mismatches surface automatically. Your team reviews flags, not
+                  the full ledger.
+                </p>
+                <p>
+                  As you expand internationally, UK and UAE settlements reconcile in the
+                  same place as your India channels. No separate setup, no new tool.
+                </p>
+              </div>
+            </div>
+
+            {/* Reporting & MIS */}
+            <div className="nx-pricing__value-block nx-reveal">
+              <h3 className="nx-pricing__value-title">Reporting &amp; MIS</h3>
+              <div className="nx-pricing__value-prose">
+                <p>
+                  Associates currently pull data manually and build Excel reports
+                  for weekly CFO reviews. With Nexbit, those dashboards are
+                  live. The CFO sees actuals directly, without waiting for a
+                  report to be assembled.
+                </p>
+                <p>
+                  Investor-ready and audit-ready data is available at any point, already
+                  structured.
+                </p>
+              </div>
+            </div>
+
+            {/* Pricing comparison */}
+            <div className="nx-pricing__value-block nx-reveal">
+              <h3 className="nx-pricing__value-title">Pricing</h3>
+              <div className="nx-pricing__value-pricing-table">
+                <div className="nx-pricing__value-pricing-row">
+                  <span className="nx-pricing__value-pricing-label">Monthly</span>
+                  <span className="nx-pricing__value-pricing-amount">
+                    ₹40,999<span className="nx-pricing__value-pricing-period">/month</span>
                   </span>
-                  <div>
-                    <h3 className="nx-pricing__roi-title">{r.label}</h3>
-                    <p className="nx-pricing__roi-body">{r.body}</p>
-                  </div>
-                </li>
-              ))}
-            </ol>
+                </div>
+                <div className="nx-pricing__value-pricing-row nx-pricing__value-pricing-row--highlight">
+                  <span className="nx-pricing__value-pricing-label">
+                    Annual <span className="nx-pricing__value-pricing-badge">15% off</span>
+                  </span>
+                  <span className="nx-pricing__value-pricing-amount">
+                    ₹34,999<span className="nx-pricing__value-pricing-period">/month</span>
+                  </span>
+                </div>
+              </div>
+              <p className="nx-pricing__value-pricing-note">
+                Unlimited transactions. All channels including international.
+                Unlimited team members.
+              </p>
+              <p className="nx-pricing__value-pricing-cta">
+                At your current volumes, this is less than{' '}
+                <strong>10 paise per order</strong>.
+              </p>
+            </div>
+
+            {/* Worth noting */}
+            <div className="nx-pricing__value-block nx-reveal">
+              <h3 className="nx-pricing__value-title">A few things worth noting</h3>
+              <div className="nx-pricing__value-prose">
+                <p>
+                  Nothing is auto-booked. Every entry is reviewable by your controller
+                  before it hits the books. Full audit trail, always available.
+                </p>
+                <p>
+                  This is built to scale with you. No per-transaction pricing, no
+                  channel limits, no user caps.
+                </p>
+              </div>
+            </div>
           </div>
         </section>
 

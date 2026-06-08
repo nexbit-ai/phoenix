@@ -518,17 +518,18 @@
 .nx-pricing__hero-aside-label {
   display: block;
   color: var(--on-dark-mute);
-  margin-bottom: 8px;
+  margin-bottom: 10px;
+  font-size: 12px;
 }
 
 .nx-pricing__hero-aside-line {
   margin: 0;
   font-family: var(--hero);
-  font-size: 17px;
+  font-size: 26px;
   font-weight: 500;
-  letter-spacing: -0.005em;
+  letter-spacing: -0.015em;
   color: var(--on-dark-strong);
-  line-height: 1.35;
+  line-height: 1.25;
 }
 
 @media (max-width: 760px) {
@@ -567,57 +568,154 @@
   .nx-pricing__section { padding: var(--s7) 0; }
 }
 
-/* ---------- ROI ---------- */
+/* ---------- Value section ("What you're getting") ---------- */
 
-.nx-pricing__roi {
-  list-style: none;
-  margin: var(--s6) 0 0;
-  padding: 0;
-  border-top: 1px solid var(--hairline);
+.nx-pricing__value-intro {
+  margin-top: var(--s6);
+  max-width: 64ch;
 }
 
-.nx-pricing__roi-item {
-  display: grid;
-  grid-template-columns: 80px 1fr;
-  gap: var(--s5);
-  padding: var(--s5) 0;
-  border-bottom: 1px solid var(--hairline);
-  align-items: baseline;
+.nx-pricing__value-intro p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  margin: 0 0 var(--s4);
 }
 
-.nx-pricing__roi-num {
-  font-family: var(--hero);
-  font-size: 28px;
-  line-height: 1;
-  font-weight: 500;
-  letter-spacing: -0.02em;
-  color: var(--clay);
-  font-variant-numeric: tabular-nums;
+.nx-pricing__value-intro p:last-child {
+  margin-bottom: 0;
 }
 
-.nx-pricing__roi-title {
-  font-family: var(--hero);
-  font-size: 18px;
+.nx-pricing__value-highlight {
+  font-size: 16px;
+  color: var(--ink);
+  font-weight: 400;
+  border-left: 3px solid var(--clay);
+  padding-left: var(--s4);
+  margin-top: var(--s5) !important;
+}
+
+.nx-pricing__value-highlight strong {
   font-weight: 600;
-  letter-spacing: -0.005em;
-  margin: 0 0 4px;
   color: var(--ink);
 }
 
-.nx-pricing__roi-body {
-  margin: 0;
+.nx-pricing__value-block {
+  margin-top: var(--s7);
+  padding-top: var(--s6);
+  border-top: 1px solid var(--hairline);
+}
+
+.nx-pricing__value-title {
+  font-family: var(--hero);
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  margin: 0 0 var(--s4);
+}
+
+.nx-pricing__value-prose p {
   font-size: 15px;
+  line-height: 1.65;
   color: var(--ink-soft);
-  max-width: 60ch;
+  margin: 0 0 var(--s3);
+  max-width: 62ch;
+}
+
+.nx-pricing__value-prose p:last-child {
+  margin-bottom: 0;
+}
+
+/* Pricing mini-table */
+
+.nx-pricing__value-pricing-table {
+  margin-top: var(--s3);
+  border: 1px solid var(--hairline);
+  border-radius: 8px;
+  overflow: hidden;
+  max-width: 420px;
+}
+
+.nx-pricing__value-pricing-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--s4) var(--s5);
+}
+
+.nx-pricing__value-pricing-row + .nx-pricing__value-pricing-row {
+  border-top: 1px solid var(--hairline);
+}
+
+.nx-pricing__value-pricing-row--highlight {
+  background: var(--mint);
+}
+
+.nx-pricing__value-pricing-label {
+  font-family: var(--text);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink-soft);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nx-pricing__value-pricing-badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  background: var(--teal);
+  color: var(--on-dark-strong);
+  padding: 2px 8px;
+  border-radius: 4px;
+  line-height: 1.4;
+}
+
+.nx-pricing__value-pricing-amount {
+  font-family: var(--hero);
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.nx-pricing__value-pricing-period {
+  font-family: var(--text);
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--ink-mute);
+  margin-left: 2px;
+}
+
+.nx-pricing__value-pricing-note {
+  margin: var(--s4) 0 0;
+  font-size: 13px;
+  color: var(--ink-mute);
+  line-height: 1.55;
+  max-width: 48ch;
+}
+
+.nx-pricing__value-pricing-cta {
+  margin: var(--s3) 0 0;
+  font-size: 15px;
+  color: var(--ink);
+  line-height: 1.55;
+}
+
+.nx-pricing__value-pricing-cta strong {
+  font-weight: 600;
+  color: var(--clay);
 }
 
 @media (max-width: 720px) {
-  .nx-pricing__roi-item {
-    grid-template-columns: 1fr;
-    gap: 8px;
-    padding: var(--s4) 0;
-  }
-  .nx-pricing__roi-num { font-size: 22px; }
+  .nx-pricing__value-title { font-size: 19px; }
+  .nx-pricing__value-block { margin-top: var(--s6); padding-top: var(--s5); }
+  .nx-pricing__value-pricing-table { max-width: 100%; }
 }
 
 /* ---------- Inclusions ---------- */
