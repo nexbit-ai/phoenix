@@ -411,6 +411,31 @@
   height: 60px;
 }
 
+@media (max-width: 480px) {
+  .nx-pricing__topbar-inner {
+    height: 50px;
+  }
+  .nx-pricing__topbar .nx-pricing__wordmark {
+    font-size: 16px;
+    gap: 7px;
+  }
+  .nx-pricing__topbar .nx-pricing__wordmark-logo {
+    width: 22px;
+    height: 22px;
+  }
+  .nx-pricing__topbar .nx-pricing__badge {
+    font-size: 9px;
+    height: 22px;
+    padding: 0 8px;
+    gap: 5px;
+    letter-spacing: 0.1em;
+  }
+  .nx-pricing__topbar .nx-pricing__badge-dot {
+    width: 5px;
+    height: 5px;
+  }
+}
+
 /* ---------- Hero (compact) ---------- */
 
 .nx-pricing__hero {
