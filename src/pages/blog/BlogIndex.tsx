@@ -14,6 +14,12 @@ interface BlogPostSummary {
 
 export const POSTS: BlogPostSummary[] = [
   {
+    slug: 'swiggy-board-restructuring-what-it-means-for-brands',
+    title: 'Swiggy\'s Board Restructuring: What It Means for Brands',
+    date: 'June 12, 2026',
+    excerpt: 'Swiggy\'s board voted to remove SoftBank and Prosus\'s director nomination rights. This isn\'t just governance cleanup — it\'s preparation for a model shift that could reshape how brands sell on Instamart.',
+  },
+  {
     slug: 'ai-is-not-that-useful-in-commercial-finance',
     title: 'AI is Not That Useful in Commercial Finance',
     date: 'May 16, 2026',
