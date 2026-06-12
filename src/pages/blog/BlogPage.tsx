@@ -26,7 +26,7 @@ export const ExternalLink: React.FC<{ href: string; children: React.ReactNode }>
 const BLOG_CONTENT: Record<string, { readTime: string; content: React.ReactNode }> = {
 
   'swiggy-board-restructuring-what-it-means-for-brands': {
-    readTime: '5 min read',
+    readTime: '3 min read',
     content: (
       <>
         <p>
