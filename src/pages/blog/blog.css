@@ -73,3 +73,46 @@
   color: var(--ink-mute);
   font-weight: 600;
 }
+
+/* ── Margin notes ── */
+
+.nx-annotated {
+  position: relative;
+}
+
+.nx-margin-note {
+  position: absolute;
+  left: calc(100% + 36px);
+  top: 0;
+  width: 220px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--ink-mute);
+  opacity: 0.6;
+  padding-left: 14px;
+  border-left: 2px solid var(--hairline);
+}
+
+.nx-margin-note strong {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 5px;
+  color: var(--ink-mute);
+}
+
+@media (max-width: 1100px) {
+  .nx-margin-note {
+    position: static;
+    display: block;
+    width: auto;
+    border-left: 2px solid var(--hairline);
+    border-radius: 0 4px 4px 0;
+    background: var(--paper-deep);
+    padding: 10px 14px;
+    margin: 6px 0 var(--s4);
+    opacity: 0.7;
+  }
+}
