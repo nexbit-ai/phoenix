@@ -2,6 +2,7 @@ import Landing from './pages/landing/Landing';
 import ExtensionPrivacyPage from './pages/extension-privacy/ExtensionPrivacyPage';
 import CureskinPricingPage from './pages/cureskin-pricing/CureskinPricingPage';
 import BaccaBucciPricingPage from './pages/bacca-bucci-pricing/BaccaBucciPricingPage';
+import ToscanoPricingPage from './pages/toscano-pricing/ToscanoPricingPage';
 import ReferralPage from './pages/referral/ReferralPage';
 import PricingPage from './pages/pricing/PricingPage';
 import { BlogPage } from './pages/blog/BlogPage';
@@ -26,6 +27,9 @@ export default function App() {
   }
   if (path === '/Bacca-Bucci-pricing' || path === '/bacca-bucci-pricing') {
     return <BaccaBucciPricingPage />;
+  }
+  if (path === '/toscano-pricing') {
+    return <ToscanoPricingPage />;
   }
   if (path === '/pricing') {
     return <PricingPage />;
