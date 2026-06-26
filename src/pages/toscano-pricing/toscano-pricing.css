@@ -879,7 +879,8 @@
 /* ---------- Next steps ---------- */
 
 .nx-pricing__next {
-  padding: var(--s8) 0;
+  padding-top: var(--s8);
+  padding-bottom: var(--s8);
 }
 
 .nx-pricing__next-headline {
@@ -902,7 +903,7 @@
 }
 
 @media (max-width: 760px) {
-  .nx-pricing__next { padding: var(--s7) 0; }
+  .nx-pricing__next { padding-top: var(--s7); padding-bottom: var(--s7); }
 }
 
 /* ---------- Footer ---------- */
