@@ -3,8 +3,8 @@ import ExtensionPrivacyPage from './pages/extension-privacy/ExtensionPrivacyPage
 import CureskinPricingPage from './pages/cureskin-pricing/CureskinPricingPage';
 import BaccaBucciPricingPage from './pages/bacca-bucci-pricing/BaccaBucciPricingPage';
 import ToscanoPricingPage from './pages/toscano-pricing/ToscanoPricingPage';
+import WellbeingNutritionPricingPage from './pages/wellbeing-nutrition-pricing/WellbeingNutritionPricingPage';
 import ReferralPage from './pages/referral/ReferralPage';
-import PricingPage from './pages/pricing/PricingPage';
 import { BlogPage } from './pages/blog/BlogPage';
 import { BlogIndex } from './pages/blog/BlogIndex';
 
@@ -31,8 +31,8 @@ export default function App() {
   if (path === '/toscano-pricing') {
     return <ToscanoPricingPage />;
   }
-  if (path === '/pricing') {
-    return <PricingPage />;
+  if (path === '/wellbeing-nutrition-pricing') {
+    return <WellbeingNutritionPricingPage />;
   }
   if (path === '/refer') {
     return <ReferralPage />;

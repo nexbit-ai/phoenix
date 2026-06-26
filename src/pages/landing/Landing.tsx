@@ -330,7 +330,6 @@ const Landing: React.FC = () => {
         <div className="nx-shell nx-topbar__inner">
           <a href="#" aria-label="Nexbit home"><Wordmark /></a>
           <nav className="nx-nav" aria-label="Primary">
-            <a className="nx-nav__link" href="/pricing">Pricing</a>
             <a className="nx-nav__link" href="/blogs">Blogs</a>
             <a className="nx-nav__link" href="#capabilities">Capabilities</a>
             <a className="nx-nav__link" href="#how">How it works</a>
