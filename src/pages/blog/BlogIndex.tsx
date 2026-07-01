@@ -69,41 +69,32 @@ export const BlogIndex: React.FC = () => {
       <main id="main">
         {/* HERO SECTION */}
         <section className="nx-section nx-blog-hero nx-band nx-band--paper-deep">
-          <div className="nx-shell nx-prose" style={{ textAlign: 'center' }}>
-            <h1 className="nx-display nx-section__headline nx-reveal" style={{ marginLeft: 'auto', marginRight: 'auto' }}>
-              The Nexbit <span className="nx-italic">Blog</span>
-            </h1>
-            <p className="nx-lede nx-section__lede nx-reveal" style={{ marginLeft: 'auto', marginRight: 'auto' }}>
-              Thoughts, playbooks, and insights on running finance at the speed of modern commerce.
-            </p>
+          <div className="nx-shell">
+            <div className="nx-blog-header">
+              <h1 className="nx-display nx-section__headline nx-reveal">
+                The Nexbit <span className="nx-italic">Blog</span>
+              </h1>
+              <p className="nx-lede nx-section__lede nx-reveal">
+                Thoughts, playbooks, and insights on running finance at the speed of modern commerce.
+              </p>
+            </div>
           </div>
         </section>
 
         {/* POSTS LIST */}
         <section className="nx-section">
           <div className="nx-shell nx-reveal">
-            <div style={{ display: 'grid', gap: 'var(--s8)', maxWidth: 'var(--prose-max)', margin: '0 auto', textAlign: 'center' }}>
+            <div className="nx-blog-list">
               {POSTS.map((post) => (
-                <article key={post.slug} style={{ borderBottom: '1px solid var(--hairline)', paddingBottom: 'var(--s6)' }}>
-                  <span className="nx-meta" style={{ display: 'block', marginBottom: 'var(--s2)' }}>
-                    {post.date}
-                  </span>
-                  <a href={`/blog/${post.slug}`} style={{ display: 'block' }}>
-                    <h2 style={{ 
-                      fontFamily: 'var(--hero)', 
-                      fontSize: '32px', 
-                      fontWeight: 600, 
-                      color: 'var(--ink)',
-                      marginBottom: 'var(--s3)',
-                      letterSpacing: '-0.01em'
-                    }}>
-                      {post.title}
-                    </h2>
+                <article key={post.slug} className="nx-blog-card">
+                  <span className="nx-meta nx-blog-card__date">{post.date}</span>
+                  <a href={`/blog/${post.slug}`} className="nx-blog-card__title-link">
+                    <h2 className="nx-blog-card__title">{post.title}</h2>
                   </a>
-                  <p className="nx-body" style={{ fontSize: '18px', lineHeight: 1.6, marginBottom: 'var(--s4)' }}>
-                    {post.excerpt}
-                  </p>
-
+                  <p className="nx-blog-card__excerpt">{post.excerpt}</p>
+                  <a href={`/blog/${post.slug}`} className="nx-blog-card__more">
+                    Read article →
+                  </a>
                 </article>
               ))}
             </div>

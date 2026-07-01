@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import logoFresh from '../../assets/logo_fresh.jpg';
+import qcomIncentiveHeader from '../../assets/blog/qcom_incentive_header.png';
 import { Wordmark } from '../../components/Wordmark';
 import { useReveal } from '../../utils/useReveal';
 import { POSTS } from './BlogIndex';
@@ -32,10 +33,16 @@ const MarginNote: React.FC<{ children: React.ReactNode }> = ({ children }) => (
 
 /* ───── Blog content renderers ───── */
 
-const BLOG_CONTENT: Record<string, { readTime: string; content: React.ReactNode }> = {
+interface RailLink {
+  label: string;
+  href: string;
+}
+
+const BLOG_CONTENT: Record<string, { readTime: string; content: React.ReactNode; references?: RailLink[]; heroImage?: string }> = {
 
   'marketplaces-have-no-incentive-to-make-settlements-auditable': {
     readTime: '3 min read',
+    heroImage: qcomIncentiveHeader,
     content: (
       <>
         <h2>
@@ -210,6 +217,12 @@ const BLOG_CONTENT: Record<string, { readTime: string; content: React.ReactNode 
 
   'ai-is-not-that-useful-in-commercial-finance': {
     readTime: '4 min read',
+    references: [
+      { label: 'Ensuring AI accuracy in financial operations — Itemize', href: 'https://www.itemize.com/ensuring-ai-accuracy-in-financial-operations-the-critical-role-of-data-and-knowledge-quality/' },
+      { label: '5 reasons month-end close is slow — Solving Finance', href: 'https://www.solving-finance.com/post/5-reasons-month-end-close-is-slow' },
+      { label: 'Data quality for financial institutions — Qualytics', href: 'https://qualytics.ai/resources/in/data-quality-for-financial-institutions' },
+      { label: 'Why AI fails in finance — CFO Edge', href: 'https://cfoedge.uk/insights/why-ai-fails-in-finance/' },
+    ],
     content: (
       <>
         <p>
@@ -272,10 +285,46 @@ export const BlogPage: React.FC<BlogPageProps> = ({ titleSlug }) => {
   const blogEntry = BLOG_CONTENT[titleSlug];
   const readTime = blogEntry?.readTime ?? '4 min read';
   const publishDate = post?.date ?? '';
+  const references = blogEntry?.references;
+  const heroImage = blogEntry?.heroImage;
+
+  const [toc, setToc] = useState<{ id: string; text: string }[]>([]);
+  const [activeId, setActiveId] = useState<string>('');
 
   useEffect(() => {
     document.title = `${formattedTitle} | Nexbit Blog`;
   }, [formattedTitle]);
+
+  // Build the "On this page" table of contents from the rendered headings,
+  // and highlight the section currently in view.
+  useEffect(() => {
+    const container = document.querySelector('.nx-blog-content');
+    if (!container) return;
+
+    const headings = Array.from(container.querySelectorAll('h2')) as HTMLElement[];
+    setToc(
+      headings.map((h) => {
+        if (!h.id) {
+          h.id = (h.textContent || '')
+            .toLowerCase()
+            .replace(/[^a-z0-9]+/g, '-')
+            .replace(/^-+|-+$/g, '');
+        }
+        return { id: h.id, text: h.textContent || '' };
+      })
+    );
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActiveId((entry.target as HTMLElement).id);
+        });
+      },
+      { rootMargin: '-100px 0px -66% 0px' }
+    );
+    headings.forEach((h) => observer.observe(h));
+    return () => observer.disconnect();
+  }, [titleSlug]);
 
   return (
     <div className="nx-landing nx-blog">
@@ -299,25 +348,92 @@ export const BlogPage: React.FC<BlogPageProps> = ({ titleSlug }) => {
       <main id="main">
         {/* HERO SECTION */}
         <section className="nx-section nx-blog-hero nx-band nx-band--paper-deep">
-          <div className="nx-shell nx-prose">
-            {/* <div className="nx-meta nx-section__eyebrow nx-reveal">Blog</div> */}
-            <h1 className="nx-display nx-section__headline nx-reveal">
-              {formattedTitle}
-            </h1>
-            <div className="nx-blog-meta nx-reveal">
-              <span>Published on {publishDate}</span>
-              <span>·</span>
-              <span>{readTime}</span>
+          <div className="nx-shell">
+            <div className={heroImage ? 'nx-blog-hero__grid' : ''}>
+              <div className="nx-blog-header">
+                <h1 className="nx-display nx-section__headline nx-reveal">
+                  {formattedTitle}
+                </h1>
+                <div className="nx-blog-meta nx-reveal">
+                  <span>Published on {publishDate}</span>
+                  <span>·</span>
+                  <span>{readTime}</span>
+                </div>
+              </div>
+              {heroImage && (
+                <div className="nx-blog-hero__art nx-reveal">
+                  <img
+                    src={heroImage}
+                    alt="Why marketplaces have no incentive to make settlements auditable."
+                  />
+                </div>
+              )}
             </div>
           </div>
         </section>
 
         {/* CONTENT SECTION */}
         <section className="nx-section">
-          <div className="nx-shell nx-prose nx-blog-content nx-reveal">
-            {blogEntry?.content ?? (
-              <p>Blog post not found.</p>
-            )}
+          <div className="nx-shell">
+            <div className="nx-blog-layout">
+              <div className="nx-blog-content nx-reveal">
+                {blogEntry?.content ?? (
+                  <p>Blog post not found.</p>
+                )}
+              </div>
+
+              <aside className="nx-blog-rail">
+                {toc.length >= 2 && (
+                  <div className="nx-blog-rail__section nx-blog-rail__toc">
+                    <div className="nx-blog-rail__title">On this page</div>
+                    <ul className="nx-toc">
+                      {toc.map((item) => (
+                        <li key={item.id}>
+                          <a
+                            href={`#${item.id}`}
+                            className={item.id === activeId ? 'is-active' : ''}
+                          >
+                            {item.text}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {references && references.length > 0 && (
+                  <div className="nx-blog-rail__section">
+                    <div className="nx-blog-rail__title">References</div>
+                    <ul className="nx-rail-links">
+                      {references.map((ref) => (
+                        <li key={ref.href}>
+                          <a href={ref.href} target="_blank" rel="noopener noreferrer">
+                            {ref.label} ↗
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                <div className="nx-blog-rail__section">
+                  <div className="nx-rail-cta">
+                    <div className="nx-rail-cta__title">Reconcile every rupee</div>
+                    <p>
+                      See how Nexbit builds an independent ledger for your
+                      marketplace settlements.
+                    </p>
+                    <a
+                      className="nx-btn nx-btn--solid"
+                      href="/#cta"
+                      style={{ width: '100%', justifyContent: 'center' }}
+                    >
+                      Request access <span className="nx-btn__arrow" aria-hidden>→</span>
+                    </a>
+                  </div>
+                </div>
+              </aside>
+            </div>
           </div>
         </section>
 
