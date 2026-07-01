@@ -14,6 +14,12 @@ interface BlogPostSummary {
 
 export const POSTS: BlogPostSummary[] = [
   {
+    slug: 'marketplaces-have-no-incentive-to-make-settlements-auditable',
+    title: 'Marketplaces Have No Incentive to Make Settlements Auditable',
+    date: 'July 1, 2026',
+    excerpt: 'Making every settlement transparent doesn\'t improve growth, logistics, or unit economics — so it doesn\'t happen. Whenever one party defines the protocol and another bears the verification cost, complexity accumulates on the verification side. Why an independent ledger is the only real leverage.',
+  },
+  {
     slug: 'swiggy-board-restructuring-what-it-means-for-brands',
     title: 'The Quiet Restructuring Happening in Quick Commerce',
     date: 'June 12, 2026',
