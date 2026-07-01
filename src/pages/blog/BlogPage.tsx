@@ -289,7 +289,7 @@ export const BlogPage: React.FC<BlogPageProps> = ({ titleSlug }) => {
             <Wordmark />
           </a>
           <div className="nx-topbar__cta">
-            <a className="nx-btn nx-btn--ghost" href="/blogs">
+            <a className="nx-btn nx-btn--ghost" href="/blog">
               ← Back to blogs
             </a>
           </div>

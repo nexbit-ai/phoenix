@@ -11,10 +11,15 @@ import { BlogIndex } from './pages/blog/BlogIndex';
 
 export default function App() {
   const path = window.location.pathname.replace(/\/+$/, '');
-  if (path === '/blogs') {
+  // Redirect old /blogs paths to /blog for backwards compatibility
+  if (path === '/blogs' || path.startsWith('/blogs/')) {
+    window.location.replace(path.replace(/^\/blogs/, '/blog') + window.location.search + window.location.hash);
+    return null;
+  }
+  if (path === '/blog') {
     return <BlogIndex />;
   }
-  if (path.startsWith('/blogs/')) {
+  if (path.startsWith('/blog/')) {
     const titleSlug = path.split('/')[2];
     if (titleSlug) {
       return <BlogPage titleSlug={titleSlug} />;

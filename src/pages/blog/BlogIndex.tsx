@@ -53,7 +53,7 @@ export const BlogIndex: React.FC = () => {
           </a>
           <nav className="nx-nav" aria-label="Primary">
             <a className="nx-nav__link" href="/pricing">Pricing</a>
-            <a className="nx-nav__link" href="/blogs">Blogs</a>
+            <a className="nx-nav__link" href="/blog">Blogs</a>
             <a className="nx-nav__link" href="/#capabilities">Capabilities</a>
             <a className="nx-nav__link" href="/#how">How it works</a>
             <a className="nx-nav__link" href="/#faq">FAQ</a>
@@ -88,7 +88,7 @@ export const BlogIndex: React.FC = () => {
                   <span className="nx-meta" style={{ display: 'block', marginBottom: 'var(--s2)' }}>
                     {post.date}
                   </span>
-                  <a href={`/blogs/${post.slug}`} style={{ display: 'block' }}>
+                  <a href={`/blog/${post.slug}`} style={{ display: 'block' }}>
                     <h2 style={{ 
                       fontFamily: 'var(--hero)', 
                       fontSize: '32px', 
