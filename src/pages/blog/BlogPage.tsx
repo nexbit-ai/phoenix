@@ -34,6 +34,79 @@ const MarginNote: React.FC<{ children: React.ReactNode }> = ({ children }) => (
 
 const BLOG_CONTENT: Record<string, { readTime: string; content: React.ReactNode }> = {
 
+  'marketplaces-have-no-incentive-to-make-settlements-auditable': {
+    readTime: '3 min read',
+    content: (
+      <>
+        <h2>
+          How plaforms look at settlements
+        </h2>
+        <p>
+          Look at it from first principles.
+        </p>
+        <p>
+          Their job is to process millions of transactions across thousands of sellers while optimizing for growth, logistics, customer experience, and their own unit economics. Making every settlement perfectly transparent doesn't directly improve any of those metrics.
+        </p>
+
+        <h2>Incentives shape systems.</h2>
+        <p>
+          Every deduction that takes an extra hour to verify is one less deduction that gets challenged. Every report that changes structure every few months increases the cost of auditing. Every fee spread across multiple files instead of one canonical ledger adds friction to reconciliation. None of this requires bad intent. It only requires that transparency isn't a priority.
+        </p>
+
+        <h2>Finance teams pay the price.</h2>
+        <p>
+          A single payout isn't a single calculation. It's commissions, shipping, returns, claims, marketing spends, collection fees, GST adjustments, TDS, TCS, reversals, recovery entries, and timing differences spread across orders, settlements, and bank credits. The settlement report is simply one projection of a much larger accounting graph.
+        </p>
+
+        <h2>Quick commerce is the sharpest version of this problem.</h2>
+        <p>
+          The order velocity is extreme. Inventory moves continuously. Goods receipt notes, claims, shortages, damages, promotional recoveries, and logistics adjustments all feed into what eventually becomes a settlement. Miss a GRN, fail to dispute a shortage within the allowed window, or overlook a recovery entry, and that amount quietly becomes permanent. Recovering it later is difficult because the evidence has already fragmented across multiple operational systems.
+        </p>
+        <p>
+          There usually isn't a clean dispute workflow because the platform wasn't designed around making disputes efficient. It was designed around processing commerce efficiently.
+        </p>
+        <p>
+          I don't think this is a conspiracy.
+        </p>
+        <p>
+          It's incentive alignment.
+        </p>
+        <p>
+          Software naturally optimizes for the organization paying to build it. Marketplace finance systems exist to settle millions of sellers accurately enough for the marketplace. Seller auditability is a secondary objective because the seller isn't defining the product roadmap.
+        </p>
+
+        <h2>This is a pattern you see everywhere.</h2>
+        <p>
+          Whenever one party defines the protocol and another party bears the verification cost, complexity accumulates on the verification side. APIs evolve without backward compatibility. File schemas drift. Reports split into new exports. Naming conventions change. Individually these decisions are reasonable. Collectively they make reconciliation progressively harder.
+        </p>
+        <p>
+          The interesting question isn't whether marketplaces should build better settlement systems.
+        </p>
+        <p>
+          The interesting question is whether incentives can ever produce them.
+        </p>
+        <p>
+          I think the answer is no.
+        </p>
+        <p>
+          Markets become more efficient when incentives are aligned, not when participants hope for better behavior. A platform gains little from investing engineering effort into making deductions easier to challenge. Sellers, on the other hand, gain enormously from understanding every rupee that moved.
+        </p>
+
+        <h2>That creates an information asymmetry.</h2>
+        <p>
+          The seller doesn't need perfect information. The seller needs an independent financial record that reconstructs reality from raw events instead of trusting a settlement file as the source of truth.
+        </p>
+        <p>
+          Once every order, GRN, invoice, settlement line, payout, bank credit, and accounting entry can be connected into one canonical ledger, the conversation changes. You're no longer arguing that something feels wrong. You're pointing to the exact order, the exact deduction, the exact rule that produced it, and the exact amount that doesn't reconcile.
+        </p>
+
+        <blockquote>
+          "Visibility is what creates leverage. Without it, disputes become opinions. With it, disputes become accounting."
+        </blockquote>
+      </>
+    ),
+  },
+
   'swiggy-board-restructuring-what-it-means-for-brands': {
     readTime: '3 min read',
     content: (
@@ -216,7 +289,7 @@ export const BlogPage: React.FC<BlogPageProps> = ({ titleSlug }) => {
             <Wordmark />
           </a>
           <div className="nx-topbar__cta">
-            <a className="nx-btn nx-btn--ghost" href="/blogs">
+            <a className="nx-btn nx-btn--ghost" href="/blog">
               ← Back to blogs
             </a>
           </div>

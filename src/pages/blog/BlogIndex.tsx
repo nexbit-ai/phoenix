@@ -14,6 +14,12 @@ interface BlogPostSummary {
 
 export const POSTS: BlogPostSummary[] = [
   {
+    slug: 'marketplaces-have-no-incentive-to-make-settlements-auditable',
+    title: 'Marketplaces Have No Incentive to Make Settlements Auditable',
+    date: 'July 1, 2026',
+    excerpt: 'Making every settlement transparent doesn\'t improve growth, logistics, or unit economics — so it doesn\'t happen. Whenever one party defines the protocol and another bears the verification cost, complexity accumulates on the verification side. Why an independent ledger is the only real leverage.',
+  },
+  {
     slug: 'swiggy-board-restructuring-what-it-means-for-brands',
     title: 'The Quiet Restructuring Happening in Quick Commerce',
     date: 'June 12, 2026',
@@ -47,7 +53,7 @@ export const BlogIndex: React.FC = () => {
           </a>
           <nav className="nx-nav" aria-label="Primary">
             <a className="nx-nav__link" href="/pricing">Pricing</a>
-            <a className="nx-nav__link" href="/blogs">Blogs</a>
+            <a className="nx-nav__link" href="/blog">Blogs</a>
             <a className="nx-nav__link" href="/#capabilities">Capabilities</a>
             <a className="nx-nav__link" href="/#how">How it works</a>
             <a className="nx-nav__link" href="/#faq">FAQ</a>
@@ -82,7 +88,7 @@ export const BlogIndex: React.FC = () => {
                   <span className="nx-meta" style={{ display: 'block', marginBottom: 'var(--s2)' }}>
                     {post.date}
                   </span>
-                  <a href={`/blogs/${post.slug}`} style={{ display: 'block' }}>
+                  <a href={`/blog/${post.slug}`} style={{ display: 'block' }}>
                     <h2 style={{ 
                       fontFamily: 'var(--hero)', 
                       fontSize: '32px', 
