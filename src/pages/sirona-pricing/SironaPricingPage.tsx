@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import logoFresh from '../../assets/logo_fresh.jpg';
 import './sirona-pricing.css';
 
-const PIN = '5137';
+const PIN = '8391';
 const UNLOCK_KEY = 'nx-sirona-pricing-unlocked-v1';
 
 const INCLUSIONS: string[] = [
