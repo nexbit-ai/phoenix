@@ -6,6 +6,7 @@ import ToscanoPricingPage from './pages/toscano-pricing/ToscanoPricingPage';
 import WellbeingNutritionPricingPage from './pages/wellbeing-nutrition-pricing/WellbeingNutritionPricingPage';
 import SuperYouPricingPage from './pages/superyou-pricing/SuperYouPricingPage';
 import FastUpPricingPage from './pages/fast-up-pricing/FastUpPricingPage';
+import SironaPricingPage from './pages/sirona-pricing/SironaPricingPage';
 import ReferralPage from './pages/referral/ReferralPage';
 import { BlogPage } from './pages/blog/BlogPage';
 import { BlogIndex } from './pages/blog/BlogIndex';
@@ -46,6 +47,9 @@ export default function App() {
   }
   if (path === '/fast-up-pricing' || path === '/fastandup-pricing') {
     return <FastUpPricingPage />;
+  }
+  if (path === '/sirona-pricing') {
+    return <SironaPricingPage />;
   }
   if (path === '/refer') {
     return <ReferralPage />;
