@@ -8,6 +8,7 @@ import SuperYouPricingPage from './pages/superyou-pricing/SuperYouPricingPage';
 import FastUpPricingPage from './pages/fast-up-pricing/FastUpPricingPage';
 import FastUpPricingUpdatedPage from './pages/fast-up-pricing-updated/FastUpPricingUpdatedPage';
 import SironaPricingPage from './pages/sirona-pricing/SironaPricingPage';
+import VirgioPricingPage from './pages/virgio-pricing/VirgioPricingPage';
 import ReferralPage from './pages/referral/ReferralPage';
 import { BlogPage } from './pages/blog/BlogPage';
 import { BlogIndex } from './pages/blog/BlogIndex';
@@ -54,6 +55,9 @@ export default function App() {
   }
   if (path === '/sirona-pricing') {
     return <SironaPricingPage />;
+  }
+  if (path === '/virgio-pricing') {
+    return <VirgioPricingPage />;
   }
   if (path === '/refer') {
     return <ReferralPage />;
