@@ -26,42 +26,43 @@ const PROBLEM_CARDS: ProblemCard[] = [
     title: 'Manual Order-Level Reconciliation',
     body: (
       <>
-        Out of <strong>Thousands of orders</strong>, you shouldn't have to manually
-        hunt down the 500 with unsettled payments past their TAT across
-        Delhivery, Blue Dart, and multiple settlement reports.
+        Out of <strong>thousands of orders</strong>, your finance team is
+        manually tracking unsettled payments. We take that off their plate
+        entirely.
       </>
     ),
   },
   {
     number: '02',
-    title: 'Silent Revenue Leakage',
+    title: 'Undetected Revenue Leakage',
     body: (
       <>
         Marketplace bills <strong>₹100</strong>, you receive{' '}
-        <strong>₹90</strong>, and <strong>₹10 vanishes</strong>. Commission
-        overcharges and weight discrepancies compound into lakhs of silent
-        losses every quarter.
+        <strong>₹90</strong>, and <strong>₹10 goes missing</strong>. Commission
+        overcharges and weight discrepancies add up to lakhs in silent losses
+        every quarter.
       </>
     ),
   },
   {
     number: '03',
-    title: 'Un-Synced COD & Prepaid Orders',
+    title: 'Misaligned COD and Prepaid Settlements',
     body: (
       <>
-        COD and prepaid settlement timelines never align. Your finance team
-        reconciles <strong>two separate cash flows</strong> with no automated
-        escalation when payments fall behind.
+        COD and prepaid settlement timelines never sync. Your finance team
+        ends up reconciling <strong>two separate cash flows</strong> with no
+        automated escalation when payments fall behind.
       </>
     ),
   },
   {
     number: '04',
-    title: 'No Unified View Across Channels',
+    title: 'No Single View Across Channels',
     body: (
       <>
         Six channels, six dashboards, six fee structures. Without a{' '}
-        <strong>single source of truth</strong>, something always slips through.
+        <strong>single accountable partner</strong>, something always slips
+        through.
       </>
     ),
   },
@@ -70,66 +71,68 @@ const PROBLEM_CARDS: ProblemCard[] = [
 type FeatureBlock = { title: string; body?: string; bullets?: string[] };
 const FEATURE_BLOCKS: FeatureBlock[] = [
   {
-    title: 'D2C & Marketplace Reconciliation',
-    body: 'All channels in one place with order-level visibility into matched, mismatched, and unsettled transactions. Expected vs actual payouts, reconciled automatically.',
+    title: 'Full Channel Reconciliation',
+    body: 'D2C, Amazon, Flipkart, Myntra, Nykaa, Pharmeasy, and Quick Commerce. All reconciled at order level. You get clean, finalized books.',
   },
   {
-    title: 'Microsoft Dynamics 365 Integration',
-    body: 'Bi-directional sync with Dynamics 365. No double-entry; your ledger always reflects real-time settlement data.',
+    title: 'Microsoft Dynamics 365 Sync',
+    body: 'Bi-directional sync with your Dynamics 365 instance. Your ERP ledger reflects real-time settlement data with zero manual entry.',
   },
   {
-    title: 'Automated Order-Level Reconciliation',
-    body: 'Every order (COD and Prepaid) matched against shipment data, marketplace settlements, and gateway records. No spreadsheets.',
+    title: 'Zero Manual Intervention',
+    body: 'Every COD and Prepaid order matched against shipment data, marketplace settlements, and gateway records. No spreadsheets, no effort from your team.',
   },
   {
-    title: 'TAT Breach Alerts & Unsettled Order Tracking',
+    title: 'Proactive TAT Breach Alerts',
     bullets: [
-      'Automated alerts the moment an order crosses its settlement deadline',
-      'Prioritized aged-receivables view by channel and logistics partner',
+      'Automatic alerts the moment an order crosses its settlement deadline',
+      'Aged receivables prioritized by channel and logistics partner, ready to act on',
     ],
   },
   {
-    title: 'Rate Card Matching & Anomaly Flagging',
+    title: 'Rate Card and Anomaly Auditing',
     bullets: [
-      'Contracted rate cards compared against actual billed amounts at order level',
-      'Instant flagging of commission overcharges, weight discrepancies, and fee anomalies',
+      'Contracted rate cards audited against actual billed amounts at order level',
+      'Commission overcharges, weight discrepancies, and fee anomalies caught automatically',
     ],
   },
   {
-    title: 'Automated Dispute Ticketing & Recovery',
+    title: 'Dispute Recovery, Managed by Us',
     bullets: [
-      'Short-paid and missing payments auto-bucketed by claim type',
-      'Batch ticket filing with approval controls and full audit trail',
+      'Short-paid and missing payments auto-bucketed, dispute tickets filed on your behalf',
+      'Full audit trail with approval controls, recoveries tracked to closure',
     ],
   },
 ];
 
 const INCLUSIONS: string[] = [
-  'Unified reconciliation across D2C, Amazon, Flipkart, Blinkit, Zepto & Quick Commerce',
-  'Microsoft Dynamics 365 bi-directional sync',
-  'Automated order-level reconciliation (COD + Prepaid)',
-  'Real-time TAT breach alerts for unsettled orders',
-  'Rate card vs actual billed anomaly flagging',
-  'Logistics reconciliation across all courier partners',
-  'Automated dispute ticketing & recovery',
+  'Fully managed reconciliation across D2C, Amazon, Flipkart, Blinkit, Zepto and Quick Commerce',
+  'Microsoft Dynamics 365 bi-directional sync, maintained by us',
+  'Complete order-level reconciliation (COD + Prepaid), zero effort from your team',
+  'Proactive TAT breach alerts and escalation, we own the follow-up',
+  'Continuous rate card auditing and anomaly flagging',
+  'End-to-end logistics reconciliation across all courier partners',
+  'Dispute ticketing, filing and recovery, managed to closure',
   'Commission verification against your marketplace contracts',
-  'AI MIS, cash-flow forecasting & custom dashboards',
+  'Unlimited dashboard customizations, built to your CFO\'s exact specifications',
+  '24x7 Founder-level support with direct access, no ticket queues',
+  'Finalized month-end reconciliation outcomes delivered to you',
   'Unlimited orders, channels, and team members',
 ];
 
 type ROIStat = { value: string; label: string };
 const ROI_STATS: ROIStat[] = [
   {
-    value: '100%',
-    label: 'Real-time visibility into unsettled orders across all channels',
+    value: '0',
+    label: 'Hours your team spends on reconciliation. We own the entire process.',
   },
   {
-    value: '0',
-    label: 'Manual reconciliation spreadsheets, replaced entirely by automation',
+    value: '100%',
+    label: 'Order-level visibility, 24/7, via your optional Command Center dashboard.',
   },
   {
     value: '~2-5%',
-    label: 'Revenue leakage typically recovered from commission and logistics mismatches',
+    label: 'Revenue leakage typically recovered from commission and logistics mismatches.',
   },
 ];
 
@@ -365,15 +368,15 @@ const Pricing: React.FC = () => {
               </span>
 
               <h1 className="nx-pricing__hero-title">
-                Stop losing revenue to{' '}
-                <span className="nx-pricing__italic">payouts.</span>
+                Zero touch{' '}
+                <span className="nx-pricing__italic">reconciliation.</span>
               </h1>
 
               <p className="nx-pricing__hero-subtitle">
-                Multiple channels. Unsettled orders, commission overcharges, and
-                un-synced COD remittances silently eroding margin. Nexbit brings
-                it all into one automated view so your finance team recovers
-                cash instead of chasing spreadsheets.
+                Order-level reconciliation across every channel, fully managed.
+                Our AI connects to Dynamics 365, your payment gateways, and
+                logistics partners. Zero manual effort from your finance or
+                ops teams.
               </p>
 
               <div className="nx-pricing__hero-channels">
@@ -393,7 +396,8 @@ const Pricing: React.FC = () => {
             <div className="nx-pricing__problem-header">
               <span className="nx-pricing__meta nx-reveal">The problem</span>
               <h2 className="nx-pricing__display nx-reveal">
-                The missing <span className="nx-pricing__italic">penny.</span>
+                Why is your team still doing{' '}
+                <span className="nx-pricing__italic">this?</span>
               </h2>
             </div>
 
@@ -413,8 +417,8 @@ const Pricing: React.FC = () => {
 
             <div className="nx-pricing__problem-callout nx-reveal">
               <p>
-                Every day without automation is a day{' '}
-                <strong>real revenue leakage goes undetected</strong>. The cost is margin you never knew you lost.
+                Your team shouldn't be solving these problems.{' '}
+                <strong>We should, and we will</strong>. Every day without a dedicated reconciliation partner is a day revenue leakage goes unrecovered.
               </p>
             </div>
           </div>
@@ -423,10 +427,10 @@ const Pricing: React.FC = () => {
         {/* ═══ Section 3: Product Capabilities (The Nexbit Cure) ═══ */}
         <section className="nx-pricing__section nx-pricing__band nx-pricing__band--paper-deep">
           <div className="nx-pricing__shell">
-            <span className="nx-pricing__meta nx-reveal">The Nexbit cure</span>
+            <span className="nx-pricing__meta nx-reveal">What we do for you</span>
             <h2 className="nx-pricing__display nx-reveal">
-              Built for your{' '}
-              <span className="nx-pricing__italic">channels.</span>
+              Fully managed.{' '}
+              <span className="nx-pricing__italic">End to end.</span>
             </h2>
 
             <div className="nx-pricing__features nx-reveal">
@@ -453,7 +457,7 @@ const Pricing: React.FC = () => {
         <section className="nx-pricing__roi">
           <div className="nx-pricing__shell">
             <h2 className="nx-pricing__roi-title nx-reveal">
-             ROI
+             Zero friction
             </h2>
 
             <div className="nx-pricing__roi-stats nx-reveal">
@@ -470,9 +474,9 @@ const Pricing: React.FC = () => {
             </div>
 
             <p className="nx-pricing__roi-note nx-reveal">
-              Recover lost margins from commission overcharges and logistics
-              billing errors. Eliminate manual ledger syncs between your ERP
-              and marketplace reports, permanently.
+              The entire process runs in the background. Your Command
+              Center dashboard gives you 24/7 visibility into every
+              order of every channel.
             </p>
           </div>
         </section>
@@ -482,13 +486,14 @@ const Pricing: React.FC = () => {
           <div className="nx-pricing__shell">
             <span className="nx-pricing__meta nx-reveal">Your investment</span>
             <h2 className="nx-pricing__display nx-reveal">
-              What's <span className="nx-pricing__italic">included.</span>
+              Full-Service Reconciliation{' '}
+              <span className="nx-pricing__italic">Partnership.</span>
             </h2>
 
             <div className="nx-pricing__investment-frame nx-reveal">
               <div className="nx-pricing__investment-header">
                 <span className="nx-pricing__investment-plan-name">
-                  Growth Plan · Flat Monthly
+                  Done-For-You Service · Flat Monthly
                 </span>
                 <div className="nx-pricing__investment-price">
                   <span className="nx-pricing__investment-price-currency">
@@ -505,9 +510,11 @@ const Pricing: React.FC = () => {
 
               <div className="nx-pricing__investment-body">
                 <p className="nx-pricing__investment-note">
-                  Unlimited orders across every channel. No per-transaction fees,
-                  no channel caps, no user limits. Billed monthly with a 15-day
-                  pilot on your live data before any commitment.
+                  Covers everything: AI reconciliation technology, dashboard
+                  customizations to your spec, 24x7 founder-level support, and
+                  finalized month-end outcomes. Unlimited orders and channels,
+                  zero per-transaction fees. 15-day pilot on live data before
+                  any commitment.
                 </p>
 
                 <ul className="nx-pricing__inclusions">
@@ -539,13 +546,13 @@ const Pricing: React.FC = () => {
           <div className="nx-pricing__shell nx-pricing__next">
             <span className="nx-pricing__meta nx-reveal">Next steps</span>
             <h2 className="nx-pricing__next-headline nx-reveal">
-              We'd love to onboard Redcliffe Hygiene as a long-term{' '}
-              <span className="nx-pricing__italic">partner.</span>
+              Start with a 15-day{' '}
+              <span className="nx-pricing__italic">pilot.</span>
             </h2>
             <p className="nx-pricing__next-body nx-reveal">
-              15-day pilot on one month of your live data across all channels.
-              See the unsettled orders, commission variances, and logistics
-              overcharges we catch before any billing begins.
+              We run full reconciliation on your live data across every channel.
+              You see the unsettled orders, commission variances, and logistics
+              overcharges we catch. No commitment until you see the results.
             </p>
           </div>
         </section>
@@ -564,8 +571,8 @@ const Pricing: React.FC = () => {
                 Nexbit
               </div>
               <p className="nx-pricing__footer-line">
-                This pricing is prepared exclusively for Redcliffe Hygiene
-                Private Limited (PeeSafe).
+                This service proposal is prepared exclusively for Redcliffe
+                Hygiene Private Limited (PeeSafe).
               </p>
               <p
                 className="nx-pricing__footer-line"
