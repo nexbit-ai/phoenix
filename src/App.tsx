@@ -10,6 +10,7 @@ import FastUpPricingUpdatedPage from './pages/fast-up-pricing-updated/FastUpPric
 import SironaPricingPage from './pages/sirona-pricing/SironaPricingPage';
 import VirgioPricingPage from './pages/virgio-pricing/VirgioPricingPage';
 import RedcliffePricingPage from './pages/redcliffe-pricing/RedcliffePricingPage';
+import CosmixPricingPage from './pages/cosmix-pricing/CosmixPricingPage';
 import ReferralPage from './pages/referral/ReferralPage';
 import { BlogPage } from './pages/blog/BlogPage';
 import { BlogIndex } from './pages/blog/BlogIndex';
@@ -62,6 +63,9 @@ export default function App() {
   }
   if (path === '/redcliffe-pricing' || path === '/peesafe-pricing') {
     return <RedcliffePricingPage />;
+  }
+  if (path === '/cosmix-pricing') {
+    return <CosmixPricingPage />;
   }
   if (path === '/refer') {
     return <ReferralPage />;
