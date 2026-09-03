@@ -1,5 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import logoFresh from '../../assets/logo_fresh.jpg';
+import kapivaLogo from '../../assets/brands/kapiva.png';
+import atombergLogo from '../../assets/brands/atomberg.png';
+import ttkPrestigeLogo from '../../assets/brands/ttk-prestige.jpeg';
 import './redcliffe-pricing.css';
 
 const PIN = '8391';
@@ -27,7 +30,7 @@ const PROBLEM_CARDS: ProblemCard[] = [
     body: (
       <>
         Out of <strong>thousands of orders</strong>, your finance team is
-        manually tracking unsettled payments. We take that off their plate
+        manually tracking unsettled and unreconciled payments. Our platform takes that off their plate
         entirely.
       </>
     ),
@@ -46,23 +49,20 @@ const PROBLEM_CARDS: ProblemCard[] = [
   },
   {
     number: '03',
-    title: 'Misaligned COD and Prepaid Settlements',
+     title: 'Customized Dashboards for your stakeholders',
     body: (
       <>
-        COD and prepaid settlement timelines never sync. Your finance team
-        ends up reconciling <strong>two separate cash flows</strong> with no
-        automated escalation when payments fall behind.
+        Your CFO wants <strong>working capital visibility</strong>. Your operations team wants <strong>TAT tracking</strong>. Your finance head wants <strong>P&L reconciliation</strong>. Your auditor wants <strong>age-wise MIS reports</strong>. 
+        Nexbit gives you a single dashboard with everything, for everyone.
       </>
     ),
   },
   {
     number: '04',
-    title: 'No Single View Across Channels',
+    title: 'Misaligned Settlement Timelines',
     body: (
       <>
-        Six channels, six dashboards, six fee structures. Without a{' '}
-        <strong>single accountable partner</strong>, something always slips
-        through.
+        Sales happen today, Settlements next month. With multiple partners settling at different timelines, your cash flow suffers.
       </>
     ),
   },
@@ -99,7 +99,7 @@ const FEATURE_BLOCKS: FeatureBlock[] = [
   {
     title: 'Dispute Recovery, Managed by Us',
     bullets: [
-      'Short-paid and missing payments auto-bucketed, dispute tickets filed on your behalf',
+      'Short-paid and missing payments auto-bucketed',
       'Full audit trail with approval controls, recoveries tracked to closure',
     ],
   },
@@ -109,10 +109,10 @@ const INCLUSIONS: string[] = [
   'Fully managed reconciliation across D2C, Amazon, Flipkart, Blinkit, Zepto and Quick Commerce',
   'Microsoft Dynamics 365 bi-directional sync, maintained by us',
   'Complete order-level reconciliation (COD + Prepaid), zero effort from your team',
-  'Proactive TAT breach alerts and escalation, we own the follow-up',
+  'Proactive TAT breach alerts and escalation',
   'Continuous rate card auditing and anomaly flagging',
   'End-to-end logistics reconciliation across all courier partners',
-  'Dispute ticketing, filing and recovery, managed to closure',
+  'Dispute bucketing',
   'Commission verification against your marketplace contracts',
   'Unlimited dashboard customizations, built to your CFO\'s exact specifications',
   '24x7 Founder-level support with direct access, no ticket queues',
@@ -123,16 +123,45 @@ const INCLUSIONS: string[] = [
 type ROIStat = { value: string; label: string };
 const ROI_STATS: ROIStat[] = [
   {
-    value: '0',
-    label: 'Hours your team spends on reconciliation. We own the entire process.',
+    value: '<1',
+    label: 'Hour a month your team spends on reconciliation. We own the entire process.',
   },
   {
     value: '100%',
-    label: 'Order-level visibility, 24/7, via your optional Command Center dashboard.',
+    label: 'Order-level visibility, 24/7, via your Command Center dashboard.',
   },
   {
     value: '~2-5%',
     label: 'Revenue leakage typically recovered from commission and logistics mismatches.',
+  },
+];
+
+type IntegrationCategory = { label: string; partners: string[] };
+const INTEGRATIONS: IntegrationCategory[] = [
+  {
+    label: 'Marketplaces',
+    partners: [
+      'Amazon', 'Flipkart', 'Meesho', 'Myntra', 'Ajio',
+      'Cred', 'Nykaa', 'Healthkart', 'and many more',
+    ],
+  },
+  {
+    label: 'Payment Gateways',
+    partners: ['Razorpay', 'Cashfree', 'PayU', 'Paytm', 'Easebuzz'],
+  },
+  {
+    label: 'Logistic Partners',
+    partners: [
+      'Delhivery', 'Blue Dart', 'Xpressbees', 'Shiprocket', 'Ekart',
+      'Amazon Logistics', 'Blitznow', 'PikNDel', 'ElasticRun',
+    ],
+  },
+  {
+    label: 'Storefronts & OMS',
+    partners: [
+      'Unicommerce', 'Increff', 'EasyEcom', 'Bigcommerce',
+      'Shopify', 'Magento', 'WooCommerce',
+    ],
   },
 ];
 
@@ -417,8 +446,8 @@ const Pricing: React.FC = () => {
 
             <div className="nx-pricing__problem-callout nx-reveal">
               <p>
-                Your team shouldn't be solving these problems.{' '}
-                <strong>We should, and we will</strong>. Every day without a dedicated reconciliation partner is a day revenue leakage goes unrecovered.
+                Your team shouldn't be solving these problems {' '}
+                <strong>in the age of AI</strong>. Every day without a dedicated reconciliation partner is a day revenue leakage goes unrecovered.
               </p>
             </div>
           </div>
@@ -478,6 +507,38 @@ const Pricing: React.FC = () => {
               Center dashboard gives you 24/7 visibility into every
               order of every channel.
             </p>
+          </div>
+        </section>
+
+        {/* ═══ Section 4b: Live Integrations ═══ */}
+        <section className="nx-pricing__integrations">
+          <div className="nx-pricing__shell">
+            <span className="nx-pricing__meta nx-reveal">Our ecosystem</span>
+            <h2 className="nx-pricing__display nx-reveal">
+              Live with the platforms{' '}
+              <span className="nx-pricing__italic">you use.</span>
+            </h2>
+            <p className="nx-pricing__integrations-subtitle nx-reveal">
+              Pre-built connectors across marketplaces, payment gateways, logistics partners,
+              and storefronts. Plug in on day one.
+            </p>
+
+            <div className="nx-pricing__integrations-grid nx-reveal">
+              {INTEGRATIONS.map((cat) => (
+                <div key={cat.label} className="nx-pricing__integrations-category">
+                  <span className="nx-pricing__integrations-category-label">
+                    {cat.label}
+                  </span>
+                  <div className="nx-pricing__integrations-chips">
+                    {cat.partners.map((p) => (
+                      <span key={p} className="nx-pricing__integrations-chip">
+                        {p}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
@@ -541,19 +602,124 @@ const Pricing: React.FC = () => {
           </div>
         </section>
 
+        {/* ═══ Trusted By (Social Proof) ═══ */}
+        <section className="nx-pricing__trusted">
+          <div className="nx-pricing__shell">
+            <h2 className="nx-pricing__trusted-title nx-reveal">
+              You are in good company.
+            </h2>
+            <p className="nx-pricing__trusted-subtitle nx-reveal">
+              Leading companies of e-commerce industries trust us with their data.
+            </p>
+
+            <div className="nx-pricing__trusted-logos nx-reveal">
+              <div className="nx-pricing__trusted-logo">
+                {/* TODO: replace src with kapivaLogo import */}
+                <img src={kapivaLogo} alt="Kapiva" />
+              </div>
+              <div className="nx-pricing__trusted-logo">
+                {/* TODO: replace src with atombergLogo import */}
+                <img src={atombergLogo} alt="Atomberg" />
+              </div>
+              <div className="nx-pricing__trusted-logo">
+                {/* TODO: replace src with ttkPrestigeLogo import */}
+                <img src={ttkPrestigeLogo} alt="TTK Prestige" />
+              </div>
+              <div className="nx-pricing__trusted-more">
+                and more
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* ═══ Next Steps ═══ */}
         <section className="nx-pricing__band nx-pricing__band--mint">
           <div className="nx-pricing__shell nx-pricing__next">
             <span className="nx-pricing__meta nx-reveal">Next steps</span>
             <h2 className="nx-pricing__next-headline nx-reveal">
-              Start with a 15-day{' '}
-              <span className="nx-pricing__italic">pilot.</span>
+              Your onboarding{' '}
+              <span className="nx-pricing__italic">roadmap.</span>
             </h2>
             <p className="nx-pricing__next-body nx-reveal">
-              We run full reconciliation on your live data across every channel.
-              You see the unsettled orders, commission variances, and logistics
-              overcharges we catch. No commitment until you see the results.
+              A white-glove, 3-week onboarding built around your team's
+              pace. We handle the heavy lifting while you stay focused on
+              running the business.
             </p>
+
+            <div className="nx-pricing__phases nx-reveal">
+              <article className="nx-pricing__phase">
+                <span className="nx-pricing__phase-badge">Week 1</span>
+                <h3 className="nx-pricing__phase-title">
+                  White-Glove Onboarding
+                </h3>
+                <ul className="nx-pricing__phase-list">
+                  <li>
+                    Secure sharing of Amazon credentials and historical data
+                  </li>
+                  <li>
+                    Deep-dive into your existing data formats, reporting
+                    structures, and reconciliation workflows
+                  </li>
+                  <li>
+                    Understanding the key metrics and KPIs your finance and
+                    ops teams want to track
+                  </li>
+                  <li>
+                    Tailoring the platform configuration to support your
+                    team's exact needs
+                  </li>
+                </ul>
+              </article>
+
+              <article className="nx-pricing__phase">
+                <span className="nx-pricing__phase-badge">Week 2</span>
+                <h3 className="nx-pricing__phase-title">
+                  Training &amp; Data Familiarisation
+                </h3>
+                <ul className="nx-pricing__phase-list">
+                  <li>
+                    Hands-on training sessions for your team on the Nexbit
+                    Command Center
+                  </li>
+                  <li>
+                    Loading and reconciling complete Amazon data for the
+                    last quarter
+                  </li>
+                  <li>
+                    Your team gets comfortable navigating dashboards,
+                    reviewing discrepancies, and understanding the outputs
+                  </li>
+                  <li>
+                    Iterating on dashboard customisations based on
+                    stakeholder feedback
+                  </li>
+                </ul>
+              </article>
+
+              <article className="nx-pricing__phase">
+                <span className="nx-pricing__phase-badge">Week 3</span>
+                <h3 className="nx-pricing__phase-title">
+                  Go Live &amp; Flipkart Module
+                </h3>
+                <ul className="nx-pricing__phase-list">
+                  <li>
+                    Amazon reconciliation goes fully live with real-time
+                    data sync
+                  </li>
+                  <li>
+                    Onboarding and integration of the Flipkart module
+                  </li>
+                  <li>
+                    Multi-channel Command Center active across both
+                    marketplaces
+                  </li>
+                  <li>
+                    Ongoing founder-level support and continuous
+                    optimisation from here on
+                  </li>
+                </ul>
+              </article>
+            </div>
           </div>
         </section>
 
