@@ -16,7 +16,7 @@ const CHANNELS = [
   'Flipkart',
   'Myntra',
   'Nykaa',
-  'Pharmeasy',
+  'Meesho',
   'Quick Commerce',
   'And many more..',
   
@@ -72,7 +72,7 @@ type FeatureBlock = { title: string; body?: string; bullets?: string[] };
 const FEATURE_BLOCKS: FeatureBlock[] = [
   {
     title: 'Full Channel Reconciliation',
-    body: 'D2C, Amazon, Flipkart, Myntra, Nykaa, Pharmeasy, and Quick Commerce. All reconciled at order level. You get clean, finalized books.',
+    body: 'D2C, Amazon, Flipkart, Myntra, Nykaa, Meesho, and Quick Commerce. All reconciled at order level. You get clean, finalized books.',
   },
   {
     title: 'Microsoft Dynamics 365 Sync',
@@ -108,7 +108,7 @@ const FEATURE_BLOCKS: FeatureBlock[] = [
 const INCLUSIONS: string[] = [
   'Fully managed reconciliation across D2C, Amazon, Flipkart, Blinkit, Zepto and Quick Commerce',
   'Microsoft Dynamics 365 bi-directional sync, maintained by us',
-  'Complete order-level reconciliation (COD + Prepaid), zero effort from your team',
+  'Profit and Loss (P&L) statement across all channels',
   'Proactive TAT breach alerts and escalation',
   'Continuous rate card auditing and anomaly flagging',
   'End-to-end logistics reconciliation across all courier partners',
@@ -142,7 +142,7 @@ const INTEGRATIONS: IntegrationCategory[] = [
     label: 'Marketplaces',
     partners: [
       'Amazon', 'Flipkart', 'Meesho', 'Myntra', 'Ajio',
-      'Cred', 'Nykaa', 'Healthkart', 'and many more',
+      'Cred', 'Nykaa', 'Healthkart', 'and many more..',
     ],
   },
   {
@@ -164,6 +164,39 @@ const INTEGRATIONS: IntegrationCategory[] = [
     ],
   },
 ];
+
+/* ─── Pricing module definitions ────────────────────────────────────── */
+
+type PricingModule = {
+  id: 'b2c' | 'b2b';
+  title: string;
+  subtitle: string;
+  monthlyPrice: number;
+  platforms: string[];
+};
+
+const PRICING_MODULES: PricingModule[] = [
+  {
+    id: 'b2c',
+    title: 'B2C Reconciliation',
+    subtitle: 'Marketplace & D2C channels',
+    monthlyPrice: 35000,
+    platforms: ['Amazon', 'Flipkart', 'Own Website', 'Myntra', 'Nykaa', 'Meesho', 'Multiple other platforms..'],
+  },
+  {
+    id: 'b2b',
+    title: 'B2B Reconciliation',
+    subtitle: 'Quick commerce & modern trade',
+    monthlyPrice: 15000,
+    platforms: ['Instamart', 'Zepto', 'Blinkit', 'Modern Trade', 'General Trade', 'Institutional channels'],
+  },
+];
+
+const ANNUAL_DISCOUNT = 0.15; // 15%
+
+function formatINR(n: number): string {
+  return n.toLocaleString('en-IN');
+}
 
 /* ─── Hooks & atoms ─────────────────────────────────────────────────── */
 
@@ -205,6 +238,19 @@ const Wordmark: React.FC = () => (
     <img src={logoFresh} alt="" className="nx-pricing__wordmark-logo" aria-hidden />
     Nexbit
   </span>
+);
+
+const CheckIcon: React.FC = () => (
+  <svg
+    viewBox="0 0 16 16"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <polyline points="3 8.5 6.5 12 13 4.5" />
+  </svg>
 );
 
 /* ─── PIN Gate ──────────────────────────────────────────────────────── */
@@ -375,6 +421,33 @@ const PinGate: React.FC<{ onUnlock: () => void }> = ({ onUnlock }) => {
 const Pricing: React.FC = () => {
   useReveal();
 
+  const [selectedModules, setSelectedModules] = useState<Set<'b2c' | 'b2b'>>(
+    new Set(['b2c', 'b2b'])
+  );
+  const [billingCycle, setBillingCycle] = useState<'monthly' | 'annual'>('monthly');
+
+  const toggleModule = (id: 'b2c' | 'b2b') => {
+    setSelectedModules((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) {
+        next.delete(id);
+      } else {
+        next.add(id);
+      }
+      return next;
+    });
+  };
+
+  const monthlyTotal = PRICING_MODULES.reduce(
+    (sum, m) => sum + (selectedModules.has(m.id) ? m.monthlyPrice : 0),
+    0
+  );
+  const isAnnual = billingCycle === 'annual';
+  const effectiveMonthly = isAnnual
+    ? Math.round(monthlyTotal * (1 - ANNUAL_DISCOUNT))
+    : monthlyTotal;
+  const savings = isAnnual ? monthlyTotal - effectiveMonthly : 0;
+
   return (
     <div className="nx-pricing__doc">
       <header className="nx-pricing__topbar">
@@ -542,36 +615,159 @@ const Pricing: React.FC = () => {
           </div>
         </section>
 
-        {/* ═══ Section 5: Investment (Pricing & Inclusions) ═══ */}
+        {/* ═══ Section 5: Interactive Pricing Configurator ═══ */}
         <section className="nx-pricing__investment">
           <div className="nx-pricing__shell">
             <span className="nx-pricing__meta nx-reveal">Your investment</span>
             <h2 className="nx-pricing__display nx-reveal">
-              Full-Service Reconciliation{' '}
-              <span className="nx-pricing__italic">Partnership.</span>
+              Build your reconciliation{' '}
+              <span className="nx-pricing__italic">package.</span>
             </h2>
+            <p className="nx-pricing__configurator-subtitle nx-reveal">
+              Select the modules you need. Combine B2C and B2B for complete coverage across all your channels.
+            </p>
 
+            {/* ── Module selector cards ── */}
+            <div className="nx-pricing__modules nx-reveal">
+              {PRICING_MODULES.map((mod) => {
+                const isSelected = selectedModules.has(mod.id);
+                return (
+                  <button
+                    key={mod.id}
+                    type="button"
+                    className={`nx-pricing__module-card${isSelected ? ' is-selected' : ''}`}
+                    onClick={() => toggleModule(mod.id)}
+                    aria-pressed={isSelected}
+                  >
+                    <div className="nx-pricing__module-check-area">
+                      <span className={`nx-pricing__module-checkbox${isSelected ? ' is-checked' : ''}`}>
+                        {isSelected && <CheckIcon />}
+                      </span>
+                    </div>
+                    <div className="nx-pricing__module-content">
+                      <div className="nx-pricing__module-top-row">
+                        <div>
+                          <h3 className="nx-pricing__module-title">{mod.title}</h3>
+                          <span className="nx-pricing__module-subtitle">{mod.subtitle}</span>
+                        </div>
+                        <div className="nx-pricing__module-price">
+                          <span className="nx-pricing__module-price-currency">₹</span>
+                          <span className="nx-pricing__module-price-amount">
+                            {formatINR(mod.monthlyPrice)}
+                          </span>
+                          <span className="nx-pricing__module-price-period">/mo</span>
+                        </div>
+                      </div>
+                      <div className="nx-pricing__module-platforms">
+                        {mod.platforms.map((p) => (
+                          <span key={p} className="nx-pricing__module-platform-chip">
+                            {p}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* ── Billing toggle + price summary ── */}
+            <div className="nx-pricing__billing-frame nx-reveal">
+              <div className="nx-pricing__billing-toggle-row">
+                <span className="nx-pricing__billing-label">Billing cycle</span>
+                <div className="nx-pricing__billing-toggle" role="radiogroup" aria-label="Billing cycle">
+                  <button
+                    type="button"
+                    className={`nx-pricing__billing-option${billingCycle === 'monthly' ? ' is-active' : ''}`}
+                    role="radio"
+                    aria-checked={billingCycle === 'monthly'}
+                    onClick={() => setBillingCycle('monthly')}
+                  >
+                    Monthly
+                  </button>
+                  <button
+                    type="button"
+                    className={`nx-pricing__billing-option${billingCycle === 'annual' ? ' is-active' : ''}`}
+                    role="radio"
+                    aria-checked={billingCycle === 'annual'}
+                    onClick={() => setBillingCycle('annual')}
+                  >
+                    Annual
+                    <span className="nx-pricing__billing-save-badge">Save 15%</span>
+                  </button>
+                </div>
+              </div>
+
+              <div className="nx-pricing__price-summary">
+                {selectedModules.size === 0 ? (
+                  <div className="nx-pricing__price-empty">
+                    <span className="nx-pricing__price-empty-text">
+                      Select at least one module above to see your pricing.
+                    </span>
+                  </div>
+                ) : (
+                  <>
+                    <div className="nx-pricing__price-breakdown">
+                      {PRICING_MODULES.filter((m) => selectedModules.has(m.id)).map((m) => (
+                        <div key={m.id} className="nx-pricing__price-line">
+                          <span className="nx-pricing__price-line-label">{m.title}</span>
+                          <span className="nx-pricing__price-line-value">
+                            ₹{formatINR(m.monthlyPrice)}/mo
+                          </span>
+                        </div>
+                      ))}
+                      {isAnnual && (
+                        <div className="nx-pricing__price-line nx-pricing__price-line--discount">
+                          <span className="nx-pricing__price-line-label">
+                            Annual commitment discount
+                          </span>
+                          <span className="nx-pricing__price-line-value">
+                            −₹{formatINR(savings)}/mo
+                          </span>
+                        </div>
+                      )}
+                    </div>
+
+                    <div className="nx-pricing__price-total-row">
+                      <div className="nx-pricing__price-total-left">
+                        <span className="nx-pricing__price-total-label">
+                          {isAnnual ? 'Effective monthly price' : 'Monthly price'}
+                        </span>
+                        {isAnnual && (
+                          <span className="nx-pricing__price-total-annual">
+                            ₹{formatINR(effectiveMonthly * 12)}/yr billed annually
+                          </span>
+                        )}
+                      </div>
+                      <div className="nx-pricing__price-total-amount">
+                        {isAnnual && monthlyTotal !== effectiveMonthly && (
+                          <span className="nx-pricing__price-total-struck">
+                            ₹{formatINR(monthlyTotal)}
+                          </span>
+                        )}
+                        <span className="nx-pricing__price-total-value">
+                          <span className="nx-pricing__price-total-currency">₹</span>
+                          {formatINR(effectiveMonthly)}
+                          <span className="nx-pricing__price-total-period">/mo</span>
+                        </span>
+                      </div>
+                    </div>
+                  </>
+                )}
+              </div>
+            </div>
+
+            {/* ── Inclusions (unchanged) ── */}
             <div className="nx-pricing__investment-frame nx-reveal">
               <div className="nx-pricing__investment-header">
                 <span className="nx-pricing__investment-plan-name">
-                  Done-For-You Service · Flat Monthly
+                  Everything included · zero hidden fees
                 </span>
-                <div className="nx-pricing__investment-price">
-                  <span className="nx-pricing__investment-price-currency">
-                    ₹
-                  </span>
-                  <span className="nx-pricing__investment-price-amount">
-                    51,000
-                  </span>
-                  <span className="nx-pricing__investment-price-period">
-                    / month
-                  </span>
-                </div>
               </div>
 
               <div className="nx-pricing__investment-body">
                 <p className="nx-pricing__investment-note">
-                  Covers everything: AI reconciliation technology, dashboard
+                  Covers AI reconciliation technology, dashboard
                   customizations to your spec, 24x7 founder-level support, and
                   finalized month-end outcomes. Unlimited orders and channels,
                   zero per-transaction fees. 15-day pilot on live data before
@@ -582,22 +778,65 @@ const Pricing: React.FC = () => {
                   {INCLUSIONS.map((line) => (
                     <li key={line} className="nx-pricing__inclusion">
                       <span className="nx-pricing__check" aria-hidden>
-                        <svg
-                          viewBox="0 0 16 16"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        >
-                          <polyline points="3 8.5 6.5 12 13 4.5" />
-                        </svg>
+                        <CheckIcon />
                       </span>
                       <span>{line}</span>
                     </li>
                   ))}
                 </ul>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ═══ Section 5b: Archival Data Reconciliation ═══ */}
+        <section className="nx-pricing__archival">
+          <div className="nx-pricing__shell">
+            <span className="nx-pricing__meta nx-reveal">Historical data</span>
+            <h2 className="nx-pricing__display nx-reveal">
+              Archival data{' '}
+              <span className="nx-pricing__italic">reconciliation.</span>
+            </h2>
+            <p className="nx-pricing__archival-subtitle nx-reveal">
+              We'll ingest and reconcile your historical data across all channels, going back up to 2 years, so your books are clean from day one.
+            </p>
+
+            <div className="nx-pricing__archival-tiers nx-reveal">
+              {/* Free tier */}
+              <div className="nx-pricing__archival-tier nx-pricing__archival-tier--free">
+                <div className="nx-pricing__archival-tier-badge">Included free</div>
+                <h3 className="nx-pricing__archival-tier-title">Last Quarter</h3>
+                <p className="nx-pricing__archival-tier-desc">
+                  The most recent <strong>3 months</strong> of your historical data, stored, reconciled, and available in your Command Center at no additional cost.
+                </p>
+                <div className="nx-pricing__archival-tier-price">
+                  <span className="nx-pricing__archival-tier-price-amount">₹0</span>
+                  <span className="nx-pricing__archival-tier-price-note">included in your plan</span>
+                </div>
+              </div>
+
+              {/* Paid tier */}
+              <div className="nx-pricing__archival-tier nx-pricing__archival-tier--paid">
+                <div className="nx-pricing__archival-tier-badge nx-pricing__archival-tier-badge--paid">
+                  Additional months
+                </div>
+                <h3 className="nx-pricing__archival-tier-title">Prior Months</h3>
+                <p className="nx-pricing__archival-tier-desc">
+                  For any month <strong>prior to the last quarter</strong>, we'll ingest, store, and reconcile that data across all your channels.
+                </p>
+                <div className="nx-pricing__archival-tier-price">
+                  <span className="nx-pricing__archival-tier-price-currency">₹</span>
+                  <span className="nx-pricing__archival-tier-price-amount">20,000</span>
+                  <span className="nx-pricing__archival-tier-price-period">/ month of data</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="nx-pricing__archival-example nx-reveal">
+              <span className="nx-pricing__archival-example-label">Example</span>
+              <p className="nx-pricing__archival-example-text">
+                If you need 18 months of historical reconciliation: the last 3 months are free, and the remaining <strong>15 months</strong> are billed at ₹20,000 each.
+              </p>
             </div>
           </div>
         </section>
@@ -790,3 +1029,4 @@ const RedcliffePricingPage: React.FC = () => {
 };
 
 export default RedcliffePricingPage;
+
