@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import logoFresh from '../../assets/logo_fresh.jpg';
+import heroLandingImg from '../../assets/hero-landing.jpg';
 import { isValidEmail, submitNexbitAccountingAiEmail } from '../../utils/sheetdb';
 import { useReveal } from '../../utils/useReveal';
 import './landing.css';
@@ -44,7 +45,7 @@ const STEPS: Step[] = [
   {
     num: '01',
     title: 'Connect',
-    body: 'Plug in your systems — ERPs, payment gateways, banks, marketplaces. First sync in minutes.',
+    body: 'Plug in your systems. ERPs, payment gateways, banks, marketplaces. First sync in minutes.',
   },
   {
     num: '02',
@@ -59,7 +60,7 @@ const STEPS: Step[] = [
   {
     num: '04',
     title: 'Close',
-    body: 'Journal entries, reports, and the month-end close — done in an hour, not a fortnight.',
+    body: 'Journal entries, reports, and the month-end close. Done in an hour, not a fortnight.',
   },
 ];
 
@@ -71,7 +72,7 @@ const FAQS: Faq[] = [
       <p>
         Finance teams, controllers, and accounting operators inside high-volume
         enterprises. If your month-end close involves multiple payment rails,
-        hundreds of reconciliation items, and too many spreadsheets — this is for you.
+        hundreds of reconciliation items, and too many spreadsheets, this is for you.
       </p>
     ),
   },
@@ -80,7 +81,7 @@ const FAQS: Faq[] = [
     a: (
       <>
         <p>
-          AI sits inside specific workflows — reconciliation matching, anomaly
+          AI sits inside specific workflows: reconciliation matching, anomaly
           detection, variance explanation, and the NexBot assistant. It never books
           an entry your team hasn't reviewed.
         </p>
@@ -96,7 +97,7 @@ const FAQS: Faq[] = [
     a: (
       <p>
         Most teams complete their first reconciliation pass within the first week
-        of onboarding. Connections are API-native or file-upload based — no
+        of onboarding. Connections are API-native or file-upload based. No
         migration project.
       </p>
     ),
@@ -206,7 +207,7 @@ const Waitlist: React.FC<{ center?: boolean }> = ({ center }) => {
         </button>
       </form>
       {error && <span className="nx-waitlist__error">Enter a valid email</span>}
-      {submitted && <p className="nx-waitlist__confirm">Thanks — we'll be in touch.</p>}
+      {submitted && <p className="nx-waitlist__confirm">Thanks, we'll be in touch.</p>}
     </div>
   );
 };
@@ -249,13 +250,16 @@ const Landing: React.FC = () => {
           <div className="nx-shell--narrow">
             <div className="nx-reveal">
               <h1 className="nx-hero__headline">
-                The accounting layer your <em>enterprise</em> outgrew.
+                The accounting layer your enterprise outgrew.
               </h1>
               <p className="nx-hero__lede">
-                AI that reconciles, detects anomalies, and closes your books — in hours, not weeks.
+                AI that reconciles, detects anomalies, and closes your books. In hours, not weeks.
               </p>
               <div className="nx-hero__cta">
                 <Waitlist />
+              </div>
+              <div className="nx-hero__image-wrapper" style={{ marginTop: '64px', borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--ink-08)', boxShadow: '0 12px 48px var(--ink-04)' }}>
+                <img src={heroLandingImg} alt="Nexbit Dashboard" style={{ width: '100%', height: 'auto', display: 'block' }} />
               </div>
             </div>
           </div>
@@ -267,19 +271,19 @@ const Landing: React.FC = () => {
             <hr className="nx-divider" style={{ marginBottom: 48 }} />
             <div className="nx-stats-row">
               <div className="nx-stat">
-                <div className="nx-stat__value"><em>1 hr</em></div>
+                <div className="nx-stat__value">1 hr</div>
                 <div className="nx-stat__label">
                   Month-end close. Down from ten days.
                 </div>
               </div>
               <div className="nx-stat">
-                <div className="nx-stat__value"><em>0</em></div>
+                <div className="nx-stat__value">0</div>
                 <div className="nx-stat__label">
                   Unreconciled exceptions left behind.
                 </div>
               </div>
               <div className="nx-stat">
-                <div className="nx-stat__value"><em>24/7</em></div>
+                <div className="nx-stat__value">24/7</div>
                 <div className="nx-stat__label">
                   Continuous anomaly monitoring across all rails.
                 </div>
@@ -289,7 +293,7 @@ const Landing: React.FC = () => {
         </section>
 
         {/* ─── Manifesto ─── */}
-        <section>
+        {/* <section>
           <hr className="nx-divider" style={{ width: 'min(100% - 2rem, 688px)', margin: '0 auto' }} />
           <div className="nx-manifesto nx-reveal">
             <p className="nx-manifesto__quote">
@@ -297,7 +301,7 @@ const Landing: React.FC = () => {
             </p>
           </div>
           <hr className="nx-divider" style={{ width: 'min(100% - 2rem, 688px)', margin: '0 auto' }} />
-        </section>
+        </section> */}
 
         {/* ─── Capabilities ─── */}
         <section id="capabilities" className="nx-section">
@@ -328,7 +332,7 @@ const Landing: React.FC = () => {
             <hr className="nx-divider nx-reveal" style={{ marginBottom: 48 }} />
             <div className="nx-eyebrow nx-reveal">How it works</div>
             <h2 className="nx-headline nx-reveal" style={{ marginTop: 12 }}>
-              Four quiet <em>moves.</em>
+              Four quiet moves.
             </h2>
             <div className="nx-steps nx-reveal">
               {STEPS.map((s) => (
@@ -350,10 +354,10 @@ const Landing: React.FC = () => {
             <hr className="nx-divider nx-reveal" style={{ marginBottom: 48 }} />
             <div className="nx-eyebrow nx-reveal">NexBot</div>
             <h2 className="nx-headline nx-reveal" style={{ marginTop: 12 }}>
-              Ask your books <em>anything.</em>
+              Ask your books anything.
             </h2>
             <p className="nx-body nx-reveal" style={{ marginTop: 16 }}>
-              NexBot understands your data. Ask a question, get a table, a summary, or an answer — grounded in your actual numbers.
+              NexBot understands your data. Ask a question, get a table, a summary, or an answer. Grounded in your actual numbers.
             </p>
 
             <div className="nx-bot-preview nx-reveal" style={{ marginTop: 40 }}>
@@ -421,7 +425,7 @@ const Landing: React.FC = () => {
             <hr className="nx-divider nx-reveal" style={{ marginBottom: 48 }} />
             <div className="nx-eyebrow nx-reveal">Frequently asked</div>
             <h2 className="nx-headline nx-reveal" style={{ marginTop: 12 }}>
-              The honest <em>answers.</em>
+              The honest answers.
             </h2>
             <div className="nx-faq nx-reveal" style={{ marginTop: 40 }}>
               {FAQS.map((f, i) => (
