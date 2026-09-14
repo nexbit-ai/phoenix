@@ -240,8 +240,8 @@ const Landing: React.FC = () => {
             <a className="nx-nav__link" href="#how">How it works</a>
             <a className="nx-nav__link" href="#faq">FAQ</a>
           </nav>
-          <a className="nx-btn-pill nx-btn-pill--solid" href="#cta">
-            Request access
+          <a className="nx-btn-pill nx-btn-pill--solid" href="https://cal.com/shubh.r/nexbit-intro" target="_blank" rel="noopener noreferrer">
+            Book a demo
           </a>
         </div>
       </header>
@@ -494,7 +494,9 @@ const Landing: React.FC = () => {
               <h2 className="nx-cta-band__headline">
                 Close your books at lightning speed.
               </h2>
-              <Waitlist center />
+              <a className="nx-btn-pill nx-btn-pill--solid" href="https://cal.com/shubh.r/nexbit-intro" target="_blank" rel="noopener noreferrer" style={{ margin: '0 auto' }}>
+                Book a demo
+              </a>
             </div>
           </div>
         </section>
