@@ -52,7 +52,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 
 /* --- Shell (max-width wrapper) --- */
 .nx-shell { width: min(100% - 2rem, var(--wide-w)); margin-inline: auto; }
-.nx-shell--medium { width: min(100% - 2rem, 930px); margin-inline: auto; }
+.nx-shell--medium { width: min(100% - 2rem, 1150px); margin-inline: auto; }
 .nx-shell--narrow { width: min(100% - 2rem, var(--content-w)); margin-inline: auto; }
 
 /* --- Scroll reveal --- */

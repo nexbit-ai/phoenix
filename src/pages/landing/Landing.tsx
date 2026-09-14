@@ -253,7 +253,7 @@ const Landing: React.FC = () => {
             <div className="nx-reveal nx-hero__layout">
               <div className="nx-hero__layout-left">
                 <h1 className="nx-hero__headline">
-                  The accounting layer your enterprise outgrew.
+                  The accounting layer your enterprise outgrew
                 </h1>
                 <div className="nx-hero__cta">
                   <Waitlist />
@@ -261,7 +261,7 @@ const Landing: React.FC = () => {
               </div>
               <div className="nx-hero__layout-right">
                 <p className="nx-hero__lede">
-                  AI that closes your books in real-time. For B2B and B2C alike.<span className="nx-cursor-blink">|</span>
+                  AI that closes your books in real-time. For B2B and B2C alike<span className="nx-cursor-blink">|</span>
                 </p>
               </div>
             </div>
