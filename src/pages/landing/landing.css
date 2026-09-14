@@ -52,6 +52,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 
 /* --- Shell (max-width wrapper) --- */
 .nx-shell { width: min(100% - 2rem, var(--wide-w)); margin-inline: auto; }
+.nx-shell--medium { width: min(100% - 2rem, 930px); margin-inline: auto; }
 .nx-shell--narrow { width: min(100% - 2rem, var(--content-w)); margin-inline: auto; }
 
 /* --- Scroll reveal --- */
@@ -167,29 +168,67 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 .nx-hero__headline {
   font-family: var(--serif);
   font-weight: 400;
-  font-size: clamp(2rem, 5vw, 3rem);
+  font-size: clamp(1rem, 2vw, 1.5rem);
   line-height: 1.1;
   letter-spacing: -0.02em;
   color: var(--ink);
-  max-width: 18ch;
+  max-width: 24ch;
+  text-align: left;
 }
 
+.nx-cursor-blink {
+  font-weight: 300;
+  animation: blink 1s step-end infinite;
+  color: var(--ink-45);
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
 
 .nx-hero__lede {
-  margin-top: 20px;
-  font-size: 17px;
+  font-size: 13px;
   line-height: 1.5;
   color: var(--ink-60);
   max-width: 46ch;
   font-weight: 400;
+  text-align: left;
 }
 
 .nx-hero__cta {
   margin-top: 32px;
   display: flex;
   align-items: center;
+  justify-content: flex-start;
   gap: 12px;
   flex-wrap: wrap;
+}
+
+.nx-hero__layout {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+@media (min-width: 769px) {
+  .nx-hero__layout {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .nx-hero__layout-left {
+    flex: 1;
+    max-width: 50%;
+  }
+  .nx-hero__layout-right {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+  }
+  .nx-hero__lede {
+    max-width: 35ch;
+  }
 }
 
 /* --- Eyebrow label --- */
@@ -447,6 +486,58 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   color: var(--ink-60);
 }
 .nx-preview-table tr:last-child td { border-bottom: none; }
+
+/* --- Security & Privacy --- */
+.nx-security-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+@media (min-width: 640px) {
+  .nx-security-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+.nx-security-card {
+  background: #f0efec;
+  border-radius: 12px;
+  padding: 32px 24px 36px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 4px;
+}
+
+.nx-security-card__img {
+  width: 120px;
+  height: 120px;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.nx-security-card__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.nx-security-card__title {
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1.3;
+  margin-bottom: 6px;
+}
+
+.nx-security-card__body {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--ink-45);
+  max-width: 28ch;
+}
 
 /* --- FAQ --- */
 .nx-faq { display: flex; flex-direction: column; gap: 0; }

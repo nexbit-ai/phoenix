@@ -1,6 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import logoFresh from '../../assets/logo_fresh.jpg';
 import heroLandingImg from '../../assets/hero-landing.jpg';
+import securityFingerprint from '../../assets/security-fingerprint.jpg';
+import securityVault from '../../assets/security-vault.jpg';
+import securityPadlock from '../../assets/security-padlock.jpg';
 import { isValidEmail, submitNexbitAccountingAiEmail } from '../../utils/sheetdb';
 import { useReveal } from '../../utils/useReveal';
 import './landing.css';
@@ -31,7 +34,7 @@ const CAPABILITIES: Capability[] = [
     body: 'Revenue, settlements, ageing, and close readiness. Generated, not assembled.',
   },
   {
-    title: 'NexBot assistant',
+    title: 'Nex assistant',
     body: 'Ask anything about your books. Get tables, summaries, and answers in seconds.',
   },
   {
@@ -82,12 +85,11 @@ const FAQS: Faq[] = [
       <>
         <p>
           AI sits inside specific workflows: reconciliation matching, anomaly
-          detection, variance explanation, and the NexBot assistant. It never books
+          detection, variance explanation, and the Nex assistant. AI is never allowed to calculate numbers in your data. It never books
           an entry your team hasn't reviewed.
         </p>
         <p>
-          Every suggestion is editable, every action is auditable. Control is a
-          feature, not a setting.
+          Every suggestion is editable, every action is auditable.
         </p>
       </>
     ),
@@ -106,7 +108,7 @@ const FAQS: Faq[] = [
     q: 'Is our data secure?',
     a: (
       <p>
-        Every workspace is isolated. Authentication uses enterprise SSO with
+        Every workspace is isolated. Data is encrypted at rest and in transit.  Authentication uses enterprise SSO with
         session controls and short-lived tokens. Financial data is read-only by
         default, audited by design.
       </p>
@@ -248,16 +250,24 @@ const Landing: React.FC = () => {
         {/* ─── Hero ─── */}
         <section className="nx-hero">
           <div className="nx-shell--narrow">
-            <div className="nx-reveal">
-              <h1 className="nx-hero__headline">
-                The accounting layer your enterprise outgrew.
-              </h1>
-              <p className="nx-hero__lede">
-                AI that reconciles, detects anomalies, and closes your books. In hours, not weeks.
-              </p>
-              <div className="nx-hero__cta">
-                <Waitlist />
+            <div className="nx-reveal nx-hero__layout">
+              <div className="nx-hero__layout-left">
+                <h1 className="nx-hero__headline">
+                  The accounting layer your enterprise outgrew.
+                </h1>
+                <div className="nx-hero__cta">
+                  <Waitlist />
+                </div>
               </div>
+              <div className="nx-hero__layout-right">
+                <p className="nx-hero__lede">
+                  AI that closes your books in real-time. For B2B and B2C alike.<span className="nx-cursor-blink">|</span>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="nx-shell--medium">
+            <div className="nx-reveal">
               <div className="nx-hero__image-wrapper" style={{ marginTop: '64px', borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--ink-08)', boxShadow: '0 12px 48px var(--ink-04)' }}>
                 <img src={heroLandingImg} alt="Nexbit Dashboard" style={{ width: '100%', height: 'auto', display: 'block' }} />
               </div>
@@ -266,7 +276,7 @@ const Landing: React.FC = () => {
         </section>
 
         {/* ─── Stats ─── */}
-        <section className="nx-section">
+        {/* <section className="nx-section">
           <div className="nx-shell--narrow nx-reveal">
             <hr className="nx-divider" style={{ marginBottom: 48 }} />
             <div className="nx-stats-row">
@@ -290,7 +300,7 @@ const Landing: React.FC = () => {
               </div>
             </div>
           </div>
-        </section>
+        </section> */}
 
         {/* ─── Manifesto ─── */}
         {/* <section>
@@ -311,7 +321,7 @@ const Landing: React.FC = () => {
               What it does.
             </h2>
             <p className="nx-body nx-reveal" style={{ marginTop: 16 }}>
-              Six surfaces, one system. Each maps to a real motion inside the finance workday.
+              Stitches together every metric that matters. Each maps to a real motion inside the finance workflow.
             </p>
           </div>
           <div className="nx-shell nx-reveal" style={{ marginTop: 48 }}>
@@ -332,7 +342,7 @@ const Landing: React.FC = () => {
             <hr className="nx-divider nx-reveal" style={{ marginBottom: 48 }} />
             <div className="nx-eyebrow nx-reveal">How it works</div>
             <h2 className="nx-headline nx-reveal" style={{ marginTop: 12 }}>
-              Four quiet moves.
+              
             </h2>
             <div className="nx-steps nx-reveal">
               {STEPS.map((s) => (
@@ -352,7 +362,7 @@ const Landing: React.FC = () => {
         <section className="nx-section" style={{ paddingTop: 0 }}>
           <div className="nx-shell--narrow">
             <hr className="nx-divider nx-reveal" style={{ marginBottom: 48 }} />
-            <div className="nx-eyebrow nx-reveal">NexBot</div>
+            <div className="nx-eyebrow nx-reveal">Nex</div>
             <h2 className="nx-headline nx-reveal" style={{ marginTop: 12 }}>
               Ask your books anything.
             </h2>
@@ -363,7 +373,7 @@ const Landing: React.FC = () => {
             <div className="nx-bot-preview nx-reveal" style={{ marginTop: 40 }}>
               <div className="nx-bot-preview__header">
                 <span className="nx-bot-preview__dot" />
-                NexBot
+                Nex
               </div>
               <div className="nx-bot-preview__body">
                 <div className="nx-bot-msg">
@@ -388,19 +398,19 @@ const Landing: React.FC = () => {
                       <tbody>
                         <tr>
                           <td>STL-88412</td>
-                          <td>Amazon</td>
+                          <td>Walmart</td>
                           <td>₹1,24,800</td>
                           <td>Variance ₹3,200</td>
                         </tr>
                         <tr>
                           <td>STL-88507</td>
-                          <td>Flipkart</td>
+                          <td>Acme Corp</td>
                           <td>₹87,600</td>
                           <td>Missing payout</td>
                         </tr>
                         <tr>
                           <td>STL-88621</td>
-                          <td>Shopify</td>
+                          <td>Buyer-J983</td>
                           <td>₹62,400</td>
                           <td>Fee mismatch</td>
                         </tr>
@@ -413,6 +423,47 @@ const Landing: React.FC = () => {
                       </tbody>
                     </table>
                   </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ─── Security & Privacy ─── */}
+        <section className="nx-section" style={{ paddingTop: 0 }}>
+          <div className="nx-shell--narrow">
+            <hr className="nx-divider nx-reveal" style={{ marginBottom: 48 }} />
+            <h2 className="nx-headline nx-reveal" style={{ marginTop: 12, textAlign: 'center' }}>
+              Security and privacy built for growing businesses.
+            </h2>
+          </div>
+          <div className="nx-shell nx-reveal" style={{ marginTop: 48 }}>
+            <div className="nx-security-grid">
+              <div className="nx-security-card">
+                <div className="nx-security-card__img">
+                  <img src={securityFingerprint} alt="Enterprise-grade security" />
+                </div>
+                <div className="nx-security-card__title">Enterprise-grade security</div>
+                <div className="nx-security-card__body">
+                  Built on SOC-2 compliant infrastructure, encrypted at rest and in transit.
+                </div>
+              </div>
+              <div className="nx-security-card">
+                <div className="nx-security-card__img">
+                  <img src={securityVault} alt="Your Data Stays Private" />
+                </div>
+                <div className="nx-security-card__title">Your Data Stays Private</div>
+                <div className="nx-security-card__body">
+                  Your data will never be used to train AI models. Ever.
+                </div>
+              </div>
+              <div className="nx-security-card">
+                <div className="nx-security-card__img">
+                  <img src={securityPadlock} alt="Read-only access" />
+                </div>
+                <div className="nx-security-card__title">Read-only access</div>
+                <div className="nx-security-card__body">
+                  Nexbit only requests read permissions. It can't modify, delete or transfer your data.
                 </div>
               </div>
             </div>
@@ -441,7 +492,7 @@ const Landing: React.FC = () => {
           <div className="nx-cta-band">
             <div className="nx-shell--narrow nx-reveal">
               <h2 className="nx-cta-band__headline">
-                Close your books like the rest of your company moves.
+                Close your books at lightning speed.
               </h2>
               <Waitlist center />
             </div>
