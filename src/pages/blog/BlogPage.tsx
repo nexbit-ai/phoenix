@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import logoFresh from '../../assets/logo_fresh.jpg';
 import qcomIncentiveHeader from '../../assets/blog/qcom_incentive_header.png';
-import { Wordmark } from '../../components/Wordmark';
 import { useReveal } from '../../utils/useReveal';
 import { POSTS } from './BlogIndex';
 import '../landing/landing.css';
@@ -16,7 +15,7 @@ export const ExternalLink: React.FC<{ href: string; children: React.ReactNode }>
     href={href} 
     target="_blank" 
     rel="noopener noreferrer" 
-    style={{ textDecoration: 'underline', textUnderlineOffset: '4px', color: 'var(--ink-mute)', fontWeight: 500 }}
+    style={{ textDecoration: 'underline', textUnderlineOffset: '4px', color: 'var(--ink-60)', fontWeight: 500 }}
   >
     {children}
   </a>
@@ -327,31 +326,30 @@ export const BlogPage: React.FC<BlogPageProps> = ({ titleSlug }) => {
   }, [titleSlug]);
 
   return (
-    <div className="nx-landing nx-blog">
+    <div style={{ background: 'var(--bg)', minHeight: '100vh' }}>
       <a href="#main" className="nx-skip">
         Skip to content
       </a>
 
       <header className="nx-topbar is-stuck">
         <div className="nx-shell nx-topbar__inner">
-          <a href="/" aria-label="Nexbit home">
-            <Wordmark />
+          <a href="/" className="nx-topbar__brand" aria-label="Nexbit home">
+            <img src={logoFresh} alt="" aria-hidden />
+            Nexbit
           </a>
-          <div className="nx-topbar__cta">
-            <a className="nx-btn nx-btn--ghost" href="/blog">
-              ← Back to blogs
-            </a>
-          </div>
+          <a className="nx-btn-pill nx-btn-pill--ghost" href="/blog">
+            ← Back to blogs
+          </a>
         </div>
       </header>
 
       <main id="main">
         {/* HERO SECTION */}
-        <section className="nx-section nx-blog-hero nx-band nx-band--paper-deep">
+        <section className="nx-section nx-blog-hero nx-band--paper-deep">
           <div className="nx-shell">
             <div className={heroImage ? 'nx-blog-hero__grid' : ''}>
               <div className="nx-blog-header">
-                <h1 className="nx-display nx-section__headline nx-reveal">
+                <h1 className="nx-headline nx-reveal">
                   {formattedTitle}
                 </h1>
                 <div className="nx-blog-meta nx-reveal">
@@ -424,11 +422,11 @@ export const BlogPage: React.FC<BlogPageProps> = ({ titleSlug }) => {
                       marketplace settlements.
                     </p>
                     <a
-                      className="nx-btn nx-btn--solid"
+                      className="nx-btn-pill nx-btn-pill--solid"
                       href="/#cta"
                       style={{ width: '100%', justifyContent: 'center' }}
                     >
-                      Request access <span className="nx-btn__arrow" aria-hidden>→</span>
+                      Request access →
                     </a>
                   </div>
                 </div>
@@ -438,12 +436,12 @@ export const BlogPage: React.FC<BlogPageProps> = ({ titleSlug }) => {
         </section>
 
         {/* CTA SECTION */}
-        <section className="nx-band nx-band--mint nx-section nx-section--tight">
+        <section className="nx-band--mint nx-section nx-section--tight">
           <div className="nx-shell" style={{ textAlign: 'center' }}>
-            <h2 className="nx-display">Ready to upgrade your finance stack?</h2>
-            <div style={{ marginTop: 'var(--s5)' }}>
-              <a href="/#cta" className="nx-btn nx-btn--solid nx-btn--lg">
-                Request access <span className="nx-btn__arrow" aria-hidden>→</span>
+            <h2 className="nx-headline">Ready to upgrade your finance stack?</h2>
+            <div style={{ marginTop: 24 }}>
+              <a href="/#cta" className="nx-btn-pill nx-btn-pill--solid">
+                Request access →
               </a>
             </div>
           </div>
@@ -452,47 +450,37 @@ export const BlogPage: React.FC<BlogPageProps> = ({ titleSlug }) => {
         {/* FOOTER */}
         <footer className="nx-footer">
           <div className="nx-shell">
-            <div className="nx-footer__row">
+            <div className="nx-footer__inner">
               <div>
                 <div className="nx-footer__brand">
-                  <img
-                    src={logoFresh}
-                    alt=""
-                    className="nx-wordmark__logo"
-                    aria-hidden
-                  />
+                  <img src={logoFresh} alt="" aria-hidden />
                   Nexbit
                 </div>
-                <p className="nx-footer__line">
+                <p className="nx-footer__desc">
                   Accounting AI for D2C. The operating layer for revenue,
                   settlements, books, and the close.
                 </p>
-                <p className="nx-footer__line" style={{ marginTop: '12px' }}>
+                <p className="nx-footer__contact">
                   Contact us:{' '}
-                  <a
-                    href="mailto:founders@usenexbit.com"
-                    style={{ color: 'inherit', textDecoration: 'underline' }}
-                  >
+                  <a href="mailto:founders@usenexbit.com">
                     founders@usenexbit.com
                   </a>
                 </p>
               </div>
               <nav className="nx-footer__nav" aria-label="Footer">
+                <a href="/blog">Blog</a>
                 <a href="/#capabilities">Capabilities</a>
                 <a href="/#how">How it works</a>
                 <a href="/#faq">FAQ</a>
                 <a href="mailto:founders@usenexbit.com">Contact Us</a>
               </nav>
-              <div className="nx-footer__addr nx-mono">
-                {`ACCOUNTING AI\nFOR D2C\n2026`}
-              </div>
             </div>
 
             <div className="nx-footer__bottom">
-              <span className="nx-meta">
+              <span className="nx-footer__legal">
                 © Logikeon Labs Private Limited · All rights reserved
               </span>
-              <span className="nx-meta">Built for and by finance teams</span>
+              <span className="nx-footer__legal">Built for and by finance teams</span>
             </div>
           </div>
         </footer>

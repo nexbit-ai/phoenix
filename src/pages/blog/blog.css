@@ -1,21 +1,88 @@
-.nx-blog-hero {
-  padding-top: var(--s7);
-  padding-bottom: var(--s6);
-  border-bottom: 1px solid var(--hairline);
+/* ─────────────────────────────────────────────
+   Blog — built on top of the new landing design tokens
+   (:root vars from landing.css)
+   ───────────────────────────────────────────── */
+
+/* ── Utility classes the blog needs ── */
+
+.nx-skip {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+.nx-skip:focus {
+  position: fixed;
+  top: 8px;
+  left: 8px;
+  width: auto;
+  height: auto;
+  padding: 8px 16px;
+  background: var(--ink);
+  color: var(--bg);
+  z-index: 100;
+  border-radius: 4px;
+  font-size: 14px;
 }
 
+.nx-topbar__cta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nx-band--paper-deep {
+  background: rgba(10, 10, 10, 0.03);
+}
+
+.nx-band--mint {
+  background: #eef3ee;
+}
+
+.nx-section--tight {
+  padding: 48px 0;
+}
+
+.nx-italic {
+  font-style: italic;
+}
+
+.nx-mono {
+  font-family: var(--mono);
+  white-space: pre-line;
+}
+
+.nx-wordmark__logo {
+  width: 24px;
+  height: 24px;
+  border-radius: 5px;
+}
+
+/* ── Blog hero ── */
+
+.nx-blog-hero {
+  padding-top: 48px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid var(--ink-08);
+}
 
 .nx-blog-meta {
-  margin-top: var(--s6);
+  margin-top: 32px;
   display: flex;
   gap: 16px;
   align-items: center;
+  font-size: 14px;
+  color: var(--ink-45);
 }
+
+/* ── Blog prose ── */
 
 .nx-blog-content {
   font-size: 18px;
   line-height: 1.6;
-  color: var(--ink-mute);
+  color: var(--ink-60);
 }
 
 .nx-blog-content > :first-child {
@@ -23,61 +90,61 @@
 }
 
 .nx-blog-content h2 {
-  font-family: var(--hero);
+  font-family: var(--serif);
   font-weight: 600;
   font-size: 32px;
   line-height: 1.2;
-  color: var(--ink-mute);
-  margin-top: var(--s8);
-  margin-bottom: var(--s3);
+  color: var(--ink-60);
+  margin-top: 72px;
+  margin-bottom: 12px;
   letter-spacing: -0.01em;
   scroll-margin-top: 96px;
 }
 
 .nx-blog-content h3 {
-  font-family: var(--hero);
+  font-family: var(--serif);
   font-weight: 600;
   font-size: 24px;
   line-height: 1.2;
-  color: var(--ink-mute);
-  margin-top: var(--s6);
-  margin-bottom: var(--s3);
+  color: var(--ink-60);
+  margin-top: 32px;
+  margin-bottom: 12px;
 }
 
 .nx-blog-content p {
-  margin-bottom: var(--s4);
+  margin-bottom: 16px;
 }
 
-.nx-blog-content ul, 
+.nx-blog-content ul,
 .nx-blog-content ol {
-  margin-bottom: var(--s5);
-  padding-left: var(--s5);
+  margin-bottom: 24px;
+  padding-left: 24px;
 }
 
 .nx-blog-content li {
-  margin-bottom: var(--s2);
+  margin-bottom: 8px;
 }
 
 .nx-blog-content blockquote {
-  border-left: 4px solid var(--clay);
-  margin: var(--s6) 0;
-  padding: var(--s2) 0 var(--s2) var(--s5);
-  font-family: var(--display);
+  border-left: 4px solid var(--ink-30);
+  margin: 32px 0;
+  padding: 8px 0 8px 24px;
+  font-family: var(--serif);
   font-size: 24px;
   font-style: italic;
-  color: var(--ink-mute);
+  color: var(--ink-60);
 }
 
 .nx-blog-content code {
   font-family: monospace;
-  background: var(--paper-deep);
+  background: var(--ink-04);
   padding: 2px 6px;
   border-radius: 4px;
   font-size: 0.9em;
 }
 
 .nx-blog-content strong {
-  color: var(--ink-mute);
+  color: var(--ink-60);
   font-weight: 600;
 }
 
@@ -92,12 +159,12 @@
   width: auto;
   font-size: 13px;
   line-height: 1.6;
-  color: var(--ink-mute);
-  border-left: 2px solid var(--hairline);
+  color: var(--ink-60);
+  border-left: 2px solid var(--ink-08);
   border-radius: 0 4px 4px 0;
-  background: var(--paper-deep);
+  background: var(--ink-04);
   padding: 10px 14px;
-  margin: 6px 0 var(--s4);
+  margin: 6px 0 16px;
   opacity: 0.85;
 }
 
@@ -108,7 +175,7 @@
   text-transform: uppercase;
   display: block;
   margin-bottom: 5px;
-  color: var(--ink-mute);
+  color: var(--ink-60);
 }
 
 /* ─────────────────────────────────────────────
@@ -116,14 +183,14 @@
    ───────────────────────────────────────────── */
 
 .nx-blog-header {
-  max-width: var(--prose-max);
+  max-width: var(--content-w);
 }
 
 /* Hero with a supporting illustration on the right */
 .nx-blog-hero__grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 420px);
-  gap: var(--s8);
+  gap: 72px;
   align-items: center;
 }
 
@@ -150,14 +217,14 @@
   .nx-blog-hero__art {
     justify-self: start;
     max-width: 200px;
-    margin-top: var(--s5);
+    margin-top: 24px;
   }
 }
 
 .nx-blog-layout {
   display: grid;
-  grid-template-columns: minmax(0, var(--prose-max)) 280px;
-  gap: var(--s8);
+  grid-template-columns: minmax(0, var(--content-w)) 280px;
+  gap: 72px;
   align-items: start;
 }
 
@@ -173,7 +240,7 @@
 }
 
 .nx-blog-rail__section + .nx-blog-rail__section {
-  margin-top: var(--s6);
+  margin-top: 32px;
 }
 
 .nx-blog-rail__title {
@@ -181,15 +248,15 @@
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--ink-mute);
-  margin-bottom: var(--s3);
+  color: var(--ink-60);
+  margin-bottom: 12px;
 }
 
 .nx-toc {
   list-style: none;
   margin: 0;
   padding: 0;
-  border-left: 1px solid var(--hairline);
+  border-left: 1px solid var(--ink-08);
 }
 
 .nx-toc li {
@@ -198,10 +265,10 @@
 
 .nx-toc a {
   display: block;
-  padding: 6px 0 6px var(--s3);
+  padding: 6px 0 6px 12px;
   margin-left: -1px;
   border-left: 2px solid transparent;
-  color: var(--ink-mute);
+  color: var(--ink-60);
   opacity: 0.7;
   line-height: 1.4;
   text-decoration: none;
@@ -216,7 +283,7 @@
 .nx-toc a.is-active {
   opacity: 1;
   color: var(--ink);
-  border-left-color: var(--clay);
+  border-left-color: var(--ink);
   font-weight: 600;
 }
 
@@ -229,7 +296,7 @@
 }
 
 .nx-rail-links a {
-  color: var(--ink-mute);
+  color: var(--ink-60);
   text-decoration: none;
   line-height: 1.4;
   transition: color 0.15s ease;
@@ -242,14 +309,14 @@
 }
 
 .nx-rail-cta {
-  border: 1px solid var(--hairline);
+  border: 1px solid var(--ink-08);
   border-radius: 12px;
-  padding: var(--s4);
-  background: var(--paper-soft);
+  padding: 16px;
+  background: var(--ink-04);
 }
 
 .nx-rail-cta__title {
-  font-family: var(--hero);
+  font-family: var(--serif);
   font-weight: 600;
   font-size: 17px;
   color: var(--ink);
@@ -260,8 +327,8 @@
 .nx-rail-cta p {
   font-size: 13px;
   line-height: 1.5;
-  color: var(--ink-mute);
-  margin-bottom: var(--s4);
+  color: var(--ink-60);
+  margin-bottom: 16px;
 }
 
 @media (max-width: 1000px) {
@@ -270,10 +337,10 @@
   }
   .nx-blog-rail {
     position: static;
-    margin-top: var(--s7);
-    padding-top: var(--s6);
-    border-top: 1px solid var(--hairline);
-    max-width: var(--prose-max);
+    margin-top: 48px;
+    padding-top: 32px;
+    border-top: 1px solid var(--ink-08);
+    max-width: var(--content-w);
   }
   .nx-blog-rail__toc {
     display: none;
@@ -287,18 +354,22 @@
 .nx-blog-list {
   max-width: 760px;
   display: grid;
-  gap: var(--s7);
+  gap: 48px;
   text-align: left;
 }
 
 .nx-blog-card {
-  border-bottom: 1px solid var(--hairline);
-  padding-bottom: var(--s6);
+  border-bottom: 1px solid var(--ink-08);
+  padding-bottom: 32px;
 }
 
 .nx-blog-card__date {
   display: block;
-  margin-bottom: var(--s2);
+  margin-bottom: 8px;
+  font-size: 13px;
+  color: var(--ink-45);
+  font-weight: 500;
+  letter-spacing: 0.01em;
 }
 
 .nx-blog-card__title-link {
@@ -307,29 +378,29 @@
 }
 
 .nx-blog-card__title {
-  font-family: var(--hero);
+  font-family: var(--serif);
   font-size: 32px;
   font-weight: 600;
   color: var(--ink);
   letter-spacing: -0.01em;
   line-height: 1.15;
-  margin-bottom: var(--s3);
+  margin-bottom: 12px;
   transition: color 0.15s ease;
 }
 
 .nx-blog-card__title-link:hover .nx-blog-card__title {
-  color: var(--clay);
+  color: var(--ink-45);
 }
 
 .nx-blog-card__excerpt {
   font-size: 18px;
   line-height: 1.6;
-  color: var(--ink-mute);
-  margin-bottom: var(--s4);
+  color: var(--ink-60);
+  margin-bottom: 16px;
 }
 
 .nx-blog-card__more {
-  color: var(--clay);
+  color: var(--ink);
   font-weight: 600;
   font-size: 15px;
   text-decoration: none;
@@ -338,4 +409,14 @@
 .nx-blog-card__more:hover {
   text-decoration: underline;
   text-underline-offset: 4px;
+}
+
+/* ── Blog footer extras ── */
+
+.nx-blog .nx-footer__addr {
+  font-size: 12px;
+  color: var(--ink-30);
+  line-height: 1.5;
+  white-space: pre-line;
+  font-family: var(--mono);
 }
