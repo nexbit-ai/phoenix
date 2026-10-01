@@ -1,19 +1,54 @@
 import React, { useEffect, useRef, useState } from 'react';
 import logoFresh from '../../assets/logo_fresh.jpg';
 import './superyou-pricing.css';
+import '../../tailwind.css';
+import { PricingSection } from '../../components/blocks/pricing-section';
+
+const PAYMENT_FREQUENCIES = ["monthly", "annually"];
+const TIERS = [
+  {
+    name: "Growth Plan",
+    price: {
+      monthly: 33000,
+      annually: 28000,
+    },
+    description: "For D2C suite: includes Uniware, D2C reconciliation, logistics providers, payment gateways, etc.",
+    features: [
+      "Uniware reconciliation",
+      "Logistics providers",
+      "Payment gateways",
+      "D2C reconciliation",
+    ],
+    cta: "Select Growth",
+  },
+  {
+    name: "Omni Plan",
+    price: {
+      monthly: 55000,
+      annually: 46700,
+    },
+    description: "Covers everything: marketplaces, MT, GT, B2B, etc.",
+    features: [
+      "Everything in Growth plan",
+      "Marketplaces (Amazon, Flipkart, etc.) reconciliation",
+      "Modern trade and General trade workflows",
+      "Complete B2B and Quick Commerce coverage",
+    ],
+    cta: "Select Omni",
+    popular: true,
+  },
+];
 
 const PIN = '8391';
 const UNLOCK_KEY = 'nx-superyou-pricing-unlocked-v1';
 
 const INCLUSIONS: string[] = [
-  'Single source of truth for reconciliation across D2C, ecom, quick commerce, and B2B',
+  'Single source of truth for reconciliation across D2C channels',
   'Order and invoice to payment visibility, expected vs actual payouts',
   'Automated mismatch and revenue leakage detection',
   'Commission overcharge and contract compliance tracking',
   'Logistics contract vs billed validation and recovery',
   'Dispute and claims workflow with approval controls',
-  'B2B reconciliation: invoice to GRN to debit note to UTR',
-  'GST sync and document ingestion via uploads and email forwarding',
   'Customizable leadership-ready dashboards and MIS',
   'Reliable, near real-time data sync built to scale',
 ];
@@ -21,13 +56,13 @@ const INCLUSIONS: string[] = [
 type FeatureBlock = { title: string; body?: string; bullets?: string[] };
 const FEATURE_BLOCKS: FeatureBlock[] = [
   {
-    title: 'D2C & Marketplace Reconciliation',
-    body: 'Reconcile across Shopify, Uniware, Tally, marketplaces, payment providers, and logistics partners with order level visibility into matched, mismatched, and unsettled transactions, and expected vs actual payouts.',
+    title: 'D2C Reconciliation',
+    body: 'Reconcile across Shopify, Uniware, Tally, payment providers, and logistics partners with order level visibility into matched, mismatched, and unsettled transactions, and expected vs actual payouts.',
   },
   {
     title: 'Claims & Recovery Management',
     bullets: [
-      'Identify claim buckets: fee adjustments, overcharges, FBA loss and damage cases',
+      'Identify claim buckets: fee adjustments, overcharges and damage cases',
       'Surface pending and short settlements automatically',
       'Dispute workflow with optional approval controls before actions are triggered',
     ],
@@ -299,8 +334,6 @@ const Pricing: React.FC = () => {
                     <span>Built for Unlimited orders / month</span>
                     <span aria-hidden>&middot;</span>
                     <span>15-day trial</span>
-                    <span aria-hidden>&middot;</span>
-                    <span>Billed monthly</span>
                   </div>
                 </div>
 
@@ -329,7 +362,7 @@ const Pricing: React.FC = () => {
             <div className="nx-pricing__value-intro nx-reveal">
               <p>
                 A unified reconciliation, recovery, and finance visibility platform across
-                D2C, marketplaces, quick commerce, and B2B workflows, helping the finance
+                D2C workflows, helping the finance
                 team identify leakages faster, reduce manual effort, and improve payout accuracy.
               </p>
               <p className="nx-pricing__value-highlight">
@@ -380,26 +413,11 @@ const Pricing: React.FC = () => {
 
             {/* Pricing comparison */}
             <div className="nx-pricing__value-block nx-reveal">
-              <h3 className="nx-pricing__value-title">Pricing</h3>
-              <div className="nx-pricing__value-pricing-table">
-                <div className="nx-pricing__value-pricing-row">
-                  <span className="nx-pricing__value-pricing-label">Monthly</span>
-                  <span className="nx-pricing__value-pricing-amount">
-                    ₹28,000<span className="nx-pricing__value-pricing-period">/month</span>
-                  </span>
-                </div>
-                <div className="nx-pricing__value-pricing-row nx-pricing__value-pricing-row--highlight">
-                  <span className="nx-pricing__value-pricing-label">
-                    Annual <span className="nx-pricing__value-pricing-badge">15% off</span>
-                  </span>
-                  <span className="nx-pricing__value-pricing-amount">
-                    ₹23,800<span className="nx-pricing__value-pricing-period">/month</span>
-                  </span>
-                </div>
-              </div>
-              <p className="nx-pricing__value-pricing-note">
-                Designed for your current scale of ~40,000–45,000 orders / month.
-                All channels, unlimited team members, no per-transaction pricing.
+              <PricingSection tiers={TIERS} frequencies={PAYMENT_FREQUENCIES} />
+              <p className="nx-pricing__value-pricing-note" style={{ marginTop: '16px' }}>
+                Designed for high volume enterprise scale.
+                <br />
+                Unlimited team members, no per-transaction pricing.
               </p>
               <p className="nx-pricing__value-pricing-cta">
                 A flat predictable price that supports future scale without workflow change.
@@ -482,7 +500,7 @@ const Pricing: React.FC = () => {
               <span className="nx-pricing__italic">Enterprise</span> customer.
             </h2>
             <p className="nx-pricing__next-body nx-reveal">
-              We propose a 15-day trial with one month of Amazon data, so you can
+              We propose a 15-day trial with one month of D2C data, so you can
               experience the full value of the platform before committing to billing.
             </p>
           </div>
